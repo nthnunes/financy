@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useAuth as useAuthContext } from "@/contexts/AuthContext";
 import { getGraphQLClient } from "@/lib/graphql";
 import { LOGIN_MUTATION, REGISTER_MUTATION } from "@/graphql/auth";
