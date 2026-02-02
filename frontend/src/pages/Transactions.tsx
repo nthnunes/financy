@@ -1,19 +1,19 @@
 import { useState, useMemo } from "react";
 import {
   Plus,
-  MagnifyingGlass,
+  Search,
   Pencil,
-  Trash,
+  Trash2,
   ArrowDown,
   ArrowUp,
-  ForkKnife,
+  Utensils,
   Car,
   ShoppingCart,
-  ChartLineUp,
+  TrendingUp,
   Tag,
-  House,
+  Home,
   Ticket,
-} from "@phosphor-icons/react";
+} from "lucide-react";
 import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -25,23 +25,13 @@ import { useDeleteTransaction } from "@/hooks/useTransactions";
 import { cn } from "@/lib/cn";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  Alimentação: (
-    <ForkKnife size={20} weight="duotone" className="text-blue-500" />
-  ),
-  Transporte: <Car size={20} weight="duotone" className="text-purple-500" />,
-  Mercado: (
-    <ShoppingCart size={20} weight="duotone" className="text-orange-500" />
-  ),
-  Investimento: (
-    <ChartLineUp size={20} weight="duotone" className="text-green-500" />
-  ),
-  Utilidades: <House size={20} weight="duotone" className="text-yellow-600" />,
-  Salário: (
-    <ChartLineUp size={20} weight="duotone" className="text-green-600" />
-  ),
-  Entretenimento: (
-    <Ticket size={20} weight="duotone" className="text-pink-500" />
-  ),
+  Alimentação: <Utensils size={20} className="text-blue-500" />,
+  Transporte: <Car size={20} className="text-purple-500" />,
+  Mercado: <ShoppingCart size={20} className="text-orange-500" />,
+  Investimento: <TrendingUp size={20} className="text-green-500" />,
+  Utilidades: <Home size={20} className="text-yellow-600" />,
+  Salário: <TrendingUp size={20} className="text-green-600" />,
+  Entretenimento: <Ticket size={20} className="text-pink-500" />,
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -139,7 +129,7 @@ export default function Transactions() {
           </p>
         </div>
         <Button variant="primary" size="md" onClick={openCreate}>
-          <Plus size={20} weight="bold" className="mr-1.5" />
+          <Plus size={20} strokeWidth={2.5} className="mr-1.5" />
           Nova transação
         </Button>
       </div>
@@ -155,7 +145,7 @@ export default function Transactions() {
                   setSearch(e.target.value);
                   setPage(1);
                 }}
-                icon={<MagnifyingGlass size={20} />}
+                icon={<Search size={20} />}
               />
             </div>
             <Select
@@ -211,18 +201,10 @@ export default function Transactions() {
                         <span className="text-gray-400">
                           {t.category?.name ? (
                             (CATEGORY_ICONS[t.category.name] ?? (
-                              <Tag
-                                size={20}
-                                weight="duotone"
-                                className="text-gray-400"
-                              />
+                              <Tag size={20} className="text-gray-400" />
                             ))
                           ) : (
-                            <Tag
-                              size={20}
-                              weight="duotone"
-                              className="text-gray-400"
-                            />
+                            <Tag size={20} className="text-gray-400" />
                           )}
                         </span>
                         <span className="font-medium text-gray-900">
@@ -257,12 +239,12 @@ export default function Transactions() {
                       >
                         {t.type === "income" ? (
                           <>
-                            <ArrowUp size={16} weight="bold" />
+                            <ArrowUp size={16} strokeWidth={2.5} />
                             Entrada
                           </>
                         ) : (
                           <>
-                            <ArrowDown size={16} weight="bold" />
+                            <ArrowDown size={16} strokeWidth={2.5} />
                             Saída
                           </>
                         )}
@@ -298,7 +280,7 @@ export default function Transactions() {
                           className="p-1.5 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600"
                           aria-label="Excluir"
                         >
-                          <Trash size={18} />
+                          <Trash2 size={18} />
                         </button>
                       </div>
                     </td>

@@ -2,17 +2,17 @@ import { useState } from "react";
 import {
   Plus,
   Pencil,
-  Trash,
+  Trash2,
   Tag,
-  ForkKnife,
+  Utensils,
   ShoppingCart,
   Briefcase,
   Heart,
   Car,
-  House,
+  Home,
   Ticket,
-  ChartLineUp,
-} from "@phosphor-icons/react";
+  TrendingUp,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { CategoryFormDialog } from "@/components/CategoryFormDialog";
@@ -22,22 +22,14 @@ import { useTransactions } from "@/hooks/useTransactions";
 import { cn } from "@/lib/cn";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  Alimentação: (
-    <ForkKnife size={24} weight="duotone" className="text-blue-500" />
-  ),
-  Mercado: (
-    <ShoppingCart size={24} weight="duotone" className="text-orange-500" />
-  ),
-  Salário: <Briefcase size={24} weight="duotone" className="text-green-500" />,
-  Saúde: <Heart size={24} weight="duotone" className="text-pink-500" />,
-  Transporte: <Car size={24} weight="duotone" className="text-purple-500" />,
-  Utilidades: <House size={24} weight="duotone" className="text-yellow-600" />,
-  Entretenimento: (
-    <Ticket size={24} weight="duotone" className="text-pink-500" />
-  ),
-  Investimento: (
-    <ChartLineUp size={24} weight="duotone" className="text-green-500" />
-  ),
+  Alimentação: <Utensils size={24} className="text-blue-500" />,
+  Mercado: <ShoppingCart size={24} className="text-orange-500" />,
+  Salário: <Briefcase size={24} className="text-green-500" />,
+  Saúde: <Heart size={24} className="text-pink-500" />,
+  Transporte: <Car size={24} className="text-purple-500" />,
+  Utilidades: <Home size={24} className="text-yellow-600" />,
+  Entretenimento: <Ticket size={24} className="text-pink-500" />,
+  Investimento: <TrendingUp size={24} className="text-green-500" />,
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -100,7 +92,7 @@ export default function Categories() {
           </p>
         </div>
         <Button variant="primary" size="md" onClick={openCreate}>
-          <Plus size={20} weight="bold" className="mr-1.5" />
+          <Plus size={20} strokeWidth={2.5} className="mr-1.5" />
           Nova categoria
         </Button>
       </div>
@@ -109,7 +101,7 @@ export default function Categories() {
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
             <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
-              <Tag size={24} weight="duotone" />
+              <Tag size={24} />
             </div>
             <div>
               <p className="text-2xl font-bold text-gray-900">
@@ -124,7 +116,7 @@ export default function Categories() {
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
             <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
-              <ChartLineUp size={24} weight="duotone" />
+              <TrendingUp size={24} />
             </div>
             <div>
               <p className="text-2xl font-bold text-gray-900">
@@ -139,7 +131,7 @@ export default function Categories() {
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
             <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
-              <ForkKnife size={24} weight="duotone" />
+              <Utensils size={24} />
             </div>
             <div>
               <p className="text-lg font-bold text-gray-900">
@@ -170,9 +162,7 @@ export default function Categories() {
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
-                      {CATEGORY_ICONS[c.name] ?? (
-                        <Tag size={24} weight="duotone" />
-                      )}
+                      {CATEGORY_ICONS[c.name] ?? <Tag size={24} />}
                     </div>
                     <div className="flex gap-1">
                       <button
@@ -193,7 +183,7 @@ export default function Categories() {
                         className="p-1.5 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600"
                         aria-label="Excluir"
                       >
-                        <Trash size={18} />
+                        <Trash2 size={18} />
                       </button>
                     </div>
                   </div>

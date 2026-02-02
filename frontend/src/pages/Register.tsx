@@ -2,14 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import {
-  Wallet,
-  User,
-  Envelope,
-  Lock,
-  Eye,
-  EyeSlash,
-} from "@phosphor-icons/react";
+import { Wallet, User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -41,7 +34,7 @@ export default function Register() {
         to="/"
         className="flex items-center gap-2 text-primary font-semibold text-xl mb-8"
       >
-        <Wallet size={32} weight="duotone" />
+        <Wallet size={32} className="text-primary" />
         FINANCY
       </Link>
       <div className="bg-white rounded-2xl shadow-sm p-8 w-full max-w-md">
@@ -66,7 +59,7 @@ export default function Register() {
             label="E-mail"
             type="email"
             placeholder="mail@exemplo.com"
-            icon={<Envelope size={20} />}
+            icon={<Mail size={20} />}
             error={errors.email?.message}
             {...register("email")}
           />
@@ -81,7 +74,7 @@ export default function Register() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="text-gray-400 hover:text-gray-600"
               >
-                {showPassword ? <EyeSlash size={20} /> : <Eye size={20} />}
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             }
             error={errors.password?.message}

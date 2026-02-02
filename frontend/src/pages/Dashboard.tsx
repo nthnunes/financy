@@ -3,16 +3,15 @@ import {
   Wallet,
   ArrowUp,
   ArrowDown,
-  ArrowsLeftRight,
   Tag,
   Plus,
-  ForkKnife,
+  Utensils,
   Car,
   ShoppingCart,
-  ChartLineUp,
+  TrendingUp,
   Ticket,
-  House,
-} from "@phosphor-icons/react";
+  Home,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
@@ -22,23 +21,13 @@ import { cn } from "@/lib/cn";
 import { useState, useMemo } from "react";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  Alimentação: (
-    <ForkKnife size={20} weight="duotone" className="text-blue-500" />
-  ),
-  Transporte: <Car size={20} weight="duotone" className="text-purple-500" />,
-  Mercado: (
-    <ShoppingCart size={20} weight="duotone" className="text-orange-500" />
-  ),
-  Investimento: (
-    <ChartLineUp size={20} weight="duotone" className="text-green-500" />
-  ),
-  Utilidades: <House size={20} weight="duotone" className="text-yellow-600" />,
-  Salário: (
-    <ChartLineUp size={20} weight="duotone" className="text-green-600" />
-  ),
-  Entretenimento: (
-    <Ticket size={20} weight="duotone" className="text-pink-500" />
-  ),
+  Alimentação: <Utensils size={20} className="text-blue-500" />,
+  Transporte: <Car size={20} className="text-purple-500" />,
+  Mercado: <ShoppingCart size={20} className="text-orange-500" />,
+  Investimento: <TrendingUp size={20} className="text-green-500" />,
+  Utilidades: <Home size={20} className="text-yellow-600" />,
+  Salário: <TrendingUp size={20} className="text-green-600" />,
+  Entretenimento: <Ticket size={20} className="text-pink-500" />,
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -124,7 +113,7 @@ export default function Dashboard() {
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
             <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600">
-              <Wallet size={24} weight="duotone" />
+              <Wallet size={24} />
             </div>
             <div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
@@ -143,7 +132,7 @@ export default function Dashboard() {
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
             <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600">
-              <ArrowUp size={24} weight="bold" />
+              <ArrowUp size={24} strokeWidth={2.5} />
             </div>
             <div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
@@ -162,7 +151,7 @@ export default function Dashboard() {
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
             <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center text-red-600">
-              <ArrowDown size={24} weight="bold" />
+              <ArrowDown size={24} strokeWidth={2.5} />
             </div>
             <div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
@@ -211,18 +200,10 @@ export default function Dashboard() {
                       <span className="text-gray-400">
                         {t.category?.name ? (
                           (CATEGORY_ICONS[t.category.name] ?? (
-                            <ChartLineUp
-                              size={20}
-                              weight="duotone"
-                              className="text-gray-400"
-                            />
+                            <TrendingUp size={20} className="text-gray-400" />
                           ))
                         ) : (
-                          <ChartLineUp
-                            size={20}
-                            weight="duotone"
-                            className="text-gray-400"
-                          />
+                          <TrendingUp size={20} className="text-gray-400" />
                         )}
                       </span>
                       <div>
@@ -263,9 +244,9 @@ export default function Dashboard() {
                         )}
                       >
                         {t.type === "income" ? (
-                          <ArrowUp size={16} weight="bold" />
+                          <ArrowUp size={16} strokeWidth={2.5} />
                         ) : (
-                          <ArrowDown size={16} weight="bold" />
+                          <ArrowDown size={16} strokeWidth={2.5} />
                         )}
                       </span>
                     </div>
@@ -279,7 +260,7 @@ export default function Dashboard() {
                 size="md"
                 onClick={() => setModalOpen(true)}
               >
-                <Plus size={20} weight="bold" className="mr-1.5" />
+                <Plus size={20} strokeWidth={2.5} className="mr-1.5" />
                 Nova transação
               </Button>
             </div>

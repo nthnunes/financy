@@ -1,20 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import {
-  Wallet,
-  ChartLineUp,
-  ArrowsLeftRight,
-  Tag,
-  User,
-} from "@phosphor-icons/react";
+import { Wallet, TrendingUp, ArrowLeftRight, Tag, User } from "lucide-react";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
 const nav = [
-  { path: "/dashboard", label: "Dashboard", icon: ChartLineUp },
-  { path: "/transacoes", label: "Transações", icon: ArrowsLeftRight },
+  { path: "/dashboard", label: "Dashboard", icon: TrendingUp },
+  { path: "/transacoes", label: "Transações", icon: ArrowLeftRight },
   { path: "/categorias", label: "Categorias", icon: Tag },
 ];
 
@@ -38,7 +32,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               to="/dashboard"
               className="flex items-center gap-2 text-primary font-semibold text-xl"
             >
-              <Wallet size={28} weight="duotone" />
+              <Wallet size={28} className="text-primary" />
               FINANCY
             </Link>
             <nav className="flex items-center gap-6">

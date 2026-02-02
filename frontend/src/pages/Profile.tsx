@@ -1,4 +1,4 @@
-import { User, Envelope, SignOut } from "@phosphor-icons/react";
+import { User, Mail, LogOut } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -42,7 +42,7 @@ export default function Profile() {
               label="E-mail"
               type="email"
               value={user?.email ?? ""}
-              icon={<Envelope size={20} />}
+              icon={<Mail size={20} />}
               disabled
               className="bg-gray-50 cursor-not-allowed"
             />
@@ -59,7 +59,7 @@ export default function Profile() {
               className="w-full border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300"
               onClick={logout}
             >
-              <SignOut size={20} weight="bold" className="mr-2" />
+              <LogOut size={20} className="mr-2" />
               Sair da conta
             </Button>
           </div>

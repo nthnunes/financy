@@ -10,7 +10,7 @@ Aplicação React para gerenciamento de transações e categorias, integrada à 
 - React Query + graphql-request
 - React Hook Form + Zod
 - React Router DOM
-- @phosphor-icons/react
+- lucide-react
 
 ## Variáveis de ambiente
 

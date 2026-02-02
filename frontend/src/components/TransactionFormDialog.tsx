@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { ArrowDown, ArrowUp } from "@phosphor-icons/react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import { Dialog } from "@/components/ui/Dialog";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -149,7 +149,7 @@ export function TransactionFormDialog({
                 : "border-gray-200 text-gray-600 hover:border-gray-300",
             )}
           >
-            <ArrowDown size={20} weight="bold" />
+            <ArrowDown size={20} strokeWidth={2.5} />
             Despesa
           </button>
           <button
@@ -162,7 +162,7 @@ export function TransactionFormDialog({
                 : "border-gray-200 text-gray-600 hover:border-gray-300",
             )}
           >
-            <ArrowUp size={20} weight="bold" />
+            <ArrowUp size={20} strokeWidth={2.5} />
             Receita
           </button>
         </div>
