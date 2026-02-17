@@ -34,7 +34,7 @@ export default function Register() {
         <img src="/Logo.svg" alt="FINANCY" className="h-9 w-auto" />
       </Link>
       <div className="bg-white rounded-2xl shadow-sm p-8 w-full max-w-md">
-        <h1 className="text-xl font-bold text-gray-900">Criar conta</h1>
+        <h1 className="text-xl font-bold text-gray-800">Criar conta</h1>
         <p className="text-gray-500 text-sm mt-1">
           Comece a controlar suas finanças ainda hoje
         </p>
@@ -89,7 +89,7 @@ export default function Register() {
             Cadastrar
           </Button>
           {registerMutation.isError && (
-            <p className="text-sm text-red-500 text-center">
+            <p className="text-sm text-danger text-center">
               {(registerMutation.error as Error)?.message ??
                 "Erro ao cadastrar"}
             </p>

@@ -33,7 +33,7 @@ export default function Login() {
         <img src="/Logo.svg" alt="FINANCY" className="h-9 w-auto" />
       </Link>
       <div className="bg-white rounded-2xl shadow-sm p-8 w-full max-w-md">
-        <h1 className="text-xl font-bold text-gray-900">Fazer login</h1>
+        <h1 className="text-xl font-bold text-gray-800">Fazer login</h1>
         <p className="text-gray-500 text-sm mt-1">
           Entre na sua conta para continuar
         </p>
@@ -71,11 +71,11 @@ export default function Login() {
             <label className="flex items-center gap-2 text-gray-600">
               <input
                 type="checkbox"
-                className="rounded border-gray-300 text-primary focus:ring-primary"
+                className="rounded border-gray-300 text-brand-base focus:ring-brand-base"
               />
               Lembrar-me
             </label>
-            <Link to="#" className="text-primary hover:underline">
+            <Link to="#" className="text-brand-base hover:underline">
               Recuperar senha
             </Link>
           </div>
@@ -89,7 +89,7 @@ export default function Login() {
             Entrar
           </Button>
           {login.isError && (
-            <p className="text-sm text-red-500 text-center">
+            <p className="text-sm text-danger text-center">
               {(login.error as Error)?.message ?? "Erro ao fazer login"}
             </p>
           )}
