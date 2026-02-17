@@ -139,29 +139,28 @@ export function CategoryFormDialog({
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Ícone
           </label>
-          <div className="grid grid-cols-6 gap-2">
+          <div className="grid grid-cols-8 gap-2">
             {CATEGORY_ICON_OPTIONS.map((iconKey) => {
               const IconComponent = getCategoryIconComponent(iconKey);
               const isSelected = selectedIcon === iconKey;
-              const iconColorClass =
-                CATEGORY_COLOR_OPTIONS.find(
-                  (c) => c.value === (selectedColor ?? null),
-                )?.iconClass ?? "text-gray-600";
               return (
                 <button
                   key={iconKey}
                   type="button"
                   onClick={() => setValue("icon", iconKey)}
                   className={cn(
-                    "w-10 h-10 rounded-lg flex items-center justify-center border-2 transition-colors",
+                    "w-10 h-10 rounded-lg flex items-center justify-center border transition-colors bg-white",
                     isSelected
-                      ? "border-primary bg-primary/10"
-                      : "border-transparent bg-gray-100 hover:bg-gray-200",
+                      ? "border-2 border-primary"
+                      : "border border-gray-200 hover:border-gray-300",
                   )}
                   aria-label={`Ícone ${iconKey}`}
                 >
                   {IconComponent ? (
-                    <IconComponent size={20} className={iconColorClass} />
+                    <IconComponent
+                      size={20}
+                      className="text-gray-600"
+                    />
                   ) : null}
                 </button>
               );
