@@ -144,8 +144,9 @@ export function CategoryFormDialog({
               const IconComponent = getCategoryIconComponent(iconKey);
               const isSelected = selectedIcon === iconKey;
               const iconColorClass =
-                CATEGORY_COLOR_OPTIONS.find((c) => c.value === (selectedColor ?? null))
-                  ?.iconClass ?? "text-gray-600";
+                CATEGORY_COLOR_OPTIONS.find(
+                  (c) => c.value === (selectedColor ?? null),
+                )?.iconClass ?? "text-gray-600";
               return (
                 <button
                   key={iconKey}
@@ -172,7 +173,7 @@ export function CategoryFormDialog({
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Cor
           </label>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex w-full gap-2">
             {CATEGORY_COLOR_OPTIONS.map((opt) => {
               const isSelected = selectedColor === opt.value;
               return (
@@ -181,12 +182,17 @@ export function CategoryFormDialog({
                   type="button"
                   onClick={() => setValue("color", opt.value)}
                   className={cn(
-                    "w-8 h-8 rounded-lg border-2 transition-colors",
-                    opt.swatchClass,
-                    isSelected ? "ring-2 ring-offset-2 ring-primary border-primary" : "border-transparent",
+                    "flex-1 min-w-0 rounded-lg border-2 p-1 transition-colors",
+                    isSelected
+                      ? "border-primary"
+                      : "border-gray-200 hover:border-gray-300",
                   )}
                   aria-label={`Cor ${opt.value}`}
-                />
+                >
+                  <div
+                    className={cn("h-5 w-full rounded-md", opt.swatchClass)}
+                  />
+                </button>
               );
             })}
           </div>
