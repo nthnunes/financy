@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, EyeClosed, Eye, UserRoundPlus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -59,9 +59,9 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-gray-400 hover:text-gray-600"
+                className="inline-flex items-center justify-center text-gray-400 hover:text-gray-600"
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showPassword ? <Eye size={20} /> : <EyeClosed size={20} />}
               </button>
             }
             error={errors.password?.message}
@@ -100,8 +100,12 @@ export default function Login() {
           <span className="text-gray-500 text-sm">ou</span>
           <span className="flex-1 h-px bg-gray-200" />
         </div>
-        <Link to="/cadastro" className="mt-6 block">
+        <p className="mt-6 text-center text-gray-600 text-sm">
+          Ainda não tem uma conta?
+        </p>
+        <Link to="/cadastro" className="mt-2 block">
           <Button type="button" variant="outline" size="lg" className="w-full">
+            <UserRoundPlus size={20} />
             Criar conta
           </Button>
         </Link>
