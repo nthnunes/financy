@@ -1,8 +1,8 @@
 import { cn } from "@/lib/cn";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "outline" | "ghost";
-  size?: "sm" | "md" | "lg";
+  variant?: "primary" | "outline";
+  size?: "sm" | "md";
   className?: string;
   children: React.ReactNode;
 }
@@ -23,10 +23,8 @@ export function Button({
           "bg-brand-base text-white hover:bg-brand-dark border border-transparent",
         variant === "outline" &&
           "bg-white text-gray-700 border border-gray-300",
-        variant === "ghost" && "bg-transparent text-gray-700",
         size === "sm" && "px-3 py-1.5 text-sm",
         size === "md" && "px-4 py-2.5 text-sm",
-        size === "lg" && "px-6 py-3 text-base",
         className,
       )}
       {...props}

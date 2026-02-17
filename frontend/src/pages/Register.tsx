@@ -88,7 +88,7 @@ export default function Register() {
           <Button
             type="submit"
             variant="primary"
-            size="lg"
+            size="md"
             className="w-full"
             disabled={registerMutation.isPending}
           >
@@ -111,7 +111,7 @@ export default function Register() {
           Já tem uma conta?
         </p>
         <Link to="/" className="mt-4 block">
-          <Button type="button" variant="outline" size="lg" className="w-full">
+          <Button type="button" variant="outline" size="md" className="w-full">
             <LogIn size={20} />
             Fazer login
           </Button>

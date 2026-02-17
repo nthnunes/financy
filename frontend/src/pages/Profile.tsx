@@ -55,7 +55,7 @@ export default function Profile() {
             <Button
               type="button"
               variant="outline"
-              size="lg"
+              size="md"
               className="w-full border-danger text-danger hover:bg-danger/10 hover:border-danger"
               onClick={logout}
             >

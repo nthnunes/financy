@@ -88,7 +88,7 @@ export default function Login() {
           <Button
             type="submit"
             variant="primary"
-            size="lg"
+            size="md"
             className="w-full"
             disabled={login.isPending}
           >
@@ -110,7 +110,7 @@ export default function Login() {
           Ainda não tem uma conta?
         </p>
         <Link to="/cadastro" className="mt-4 block">
-          <Button type="button" variant="outline" size="lg" className="w-full">
+          <Button type="button" variant="outline" size="md" className="w-full">
             <UserRoundPlus size={20} />
             Criar conta
           </Button>

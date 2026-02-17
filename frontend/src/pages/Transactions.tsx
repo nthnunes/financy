@@ -313,7 +313,7 @@ export default function Transactions() {
               </p>
               <div className="flex gap-1">
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page <= 1}
@@ -324,7 +324,7 @@ export default function Transactions() {
                   (n) => (
                     <Button
                       key={n}
-                      variant={n === page ? "primary" : "ghost"}
+                      variant={n === page ? "primary" : "outline"}
                       size="sm"
                       onClick={() => setPage(n)}
                     >
@@ -333,7 +333,7 @@ export default function Transactions() {
                   ),
                 )}
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page >= totalPages}

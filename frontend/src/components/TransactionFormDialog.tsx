@@ -221,7 +221,7 @@ export function TransactionFormDialog({
         <Button
           type="submit"
           variant="primary"
-          size="lg"
+          size="md"
           className="w-full"
           disabled={createTransaction.isPending || updateTransaction.isPending}
         >

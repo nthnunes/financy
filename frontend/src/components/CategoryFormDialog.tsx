@@ -197,7 +197,7 @@ export function CategoryFormDialog({
         <Button
           type="submit"
           variant="primary"
-          size="lg"
+          size="md"
           className="w-full"
           disabled={createCategory.isPending || updateCategory.isPending}
         >
