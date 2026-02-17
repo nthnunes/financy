@@ -2,13 +2,14 @@ import { useState, useMemo } from "react";
 import {
   Plus,
   Search,
-  Pencil,
-  Trash2,
+  SquarePen,
+  Trash,
   CircleArrowDown,
   CircleArrowUp,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { IconButton } from "@/components/ui/IconButton";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
@@ -276,27 +277,23 @@ export default function Transactions() {
                       {formatCurrency(t.amount, t.type)}
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex gap-1">
-                        <button
-                          type="button"
-                          onClick={() => openEdit(t)}
-                          className="p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                          aria-label="Editar"
-                        >
-                          <Pencil size={18} />
-                        </button>
-                        <button
-                          type="button"
+                      <div className="flex gap-2">
+                        <IconButton
+                          icon={Trash}
+                          variant="danger"
                           onClick={() => {
                             if (window.confirm("Excluir esta transação?")) {
                               deleteTransaction.mutate(t.id);
                             }
                           }}
-                          className="p-1.5 rounded-lg text-gray-500 hover:bg-danger/10 hover:text-danger"
                           aria-label="Excluir"
-                        >
-                          <Trash2 size={18} />
-                        </button>
+                        />
+                        <IconButton
+                          icon={SquarePen}
+                          variant="default"
+                          onClick={() => openEdit(t)}
+                          aria-label="Editar"
+                        />
                       </div>
                     </td>
                   </tr>
