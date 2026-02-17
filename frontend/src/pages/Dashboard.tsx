@@ -79,20 +79,20 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">Dashboard</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-1">Dashboard</h1>
       <p className="text-gray-500 mb-6">Visão geral das suas finanças</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600">
+            <div className="w-12 h-12 rounded-xl bg-purple-light flex items-center justify-center text-purple-base">
               <Wallet size={24} />
             </div>
             <div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Saldo total
               </p>
-              <p className="text-[28px] font-bold text-gray-900">
+              <p className="text-[28px] font-bold text-gray-800">
                 R${" "}
                 {total.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
@@ -104,14 +104,14 @@ export default function Dashboard() {
         </Card>
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600">
+            <div className="w-12 h-12 rounded-xl bg-green-light flex items-center justify-center text-green-base">
               <ArrowUp size={24} strokeWidth={2.5} />
             </div>
             <div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Receitas do mês
               </p>
-              <p className="text-[28px] font-bold text-gray-900">
+              <p className="text-[28px] font-bold text-gray-800">
                 R${" "}
                 {income.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
@@ -123,14 +123,14 @@ export default function Dashboard() {
         </Card>
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center text-red-600">
+            <div className="w-12 h-12 rounded-xl bg-red-light flex items-center justify-center text-red-base">
               <ArrowDown size={24} strokeWidth={2.5} />
             </div>
             <div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Despesas do mês
               </p>
-              <p className="text-[28px] font-bold text-gray-900">
+              <p className="text-[28px] font-bold text-gray-800">
                 R${" "}
                 {expense.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
@@ -151,7 +151,7 @@ export default function Dashboard() {
               </h2>
               <Link
                 to="/transacoes"
-                className="text-sm font-medium text-primary hover:underline flex items-center gap-0.5"
+                className="text-sm font-medium text-brand-base hover:underline flex items-center gap-0.5"
               >
                 Ver todas &gt;
               </Link>
@@ -169,7 +169,7 @@ export default function Dashboard() {
                 recentTransactions.map((t) => (
                   <div
                     key={t.id}
-                    className="flex items-center justify-between px-6 py-4 hover:bg-gray-50"
+                    className="flex items-center justify-between px-6 py-4 hover:bg-gray-100"
                   >
                     <div className="flex items-center gap-3">
                       <span
@@ -185,7 +185,7 @@ export default function Dashboard() {
                         ) ?? <TrendingUp size={20} className="text-gray-500" />}
                       </span>
                       <div>
-                        <p className="text-base font-medium text-gray-900">
+                        <p className="text-base font-medium text-gray-800">
                           {t.title}
                         </p>
                         <p className="text-sm text-gray-500">
@@ -206,8 +206,8 @@ export default function Dashboard() {
                         className={cn(
                           "font-medium",
                           t.type === "income"
-                            ? "text-green-600"
-                            : "text-gray-900",
+                            ? "text-green-base"
+                            : "text-gray-800",
                         )}
                       >
                         {formatCurrency(t.amount, t.type)}
@@ -216,8 +216,8 @@ export default function Dashboard() {
                         className={cn(
                           "w-8 h-8 rounded-full flex items-center justify-center",
                           t.type === "income"
-                            ? "bg-green-100 text-green-600"
-                            : "bg-red-100 text-red-600",
+                            ? "bg-green-light text-green-base"
+                            : "bg-red-light text-red-base",
                         )}
                       >
                         {t.type === "income" ? (
@@ -235,7 +235,7 @@ export default function Dashboard() {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-1.5 text-primary font-medium text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
+                className="inline-flex items-center gap-1.5 text-brand-base font-medium text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-brand-base/20 rounded"
               >
                 <Plus size={18} strokeWidth={2.5} />
                 Nova transação
@@ -252,7 +252,7 @@ export default function Dashboard() {
               </h2>
               <Link
                 to="/categorias"
-                className="text-sm font-medium text-primary hover:underline flex items-center gap-0.5"
+                className="text-sm font-medium text-brand-base hover:underline flex items-center gap-0.5"
               >
                 Gerenciar &gt;
               </Link>
@@ -266,7 +266,7 @@ export default function Dashboard() {
                 categoryTotals.map((c) => (
                   <div
                     key={c.id}
-                    className="flex items-center justify-between px-6 py-4 hover:bg-gray-50"
+                    className="flex items-center justify-between px-6 py-4 hover:bg-gray-100"
                   >
                     <span
                       className={cn(
@@ -279,7 +279,7 @@ export default function Dashboard() {
                     <span className="text-sm text-gray-500">
                       {c.count} {c.count === 1 ? "item" : "itens"}
                     </span>
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium text-gray-800">
                       R${" "}
                       {c.total.toLocaleString("pt-BR", {
                         minimumFractionDigits: 2,
