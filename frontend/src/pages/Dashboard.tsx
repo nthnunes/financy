@@ -38,6 +38,16 @@ const CATEGORY_COLORS: Record<string, string> = {
   Entretenimento: "bg-pink-100 text-pink-800",
 };
 
+const CATEGORY_ICON_BG: Record<string, string> = {
+  Alimentação: "bg-blue-100",
+  Transporte: "bg-purple-100",
+  Mercado: "bg-orange-100",
+  Investimento: "bg-green-100",
+  Utilidades: "bg-yellow-100",
+  Salário: "bg-green-100",
+  Entretenimento: "bg-pink-100",
+};
+
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("pt-BR", {
     day: "2-digit",
@@ -197,13 +207,20 @@ export default function Dashboard() {
                     className="flex items-center justify-between px-6 py-4 hover:bg-gray-50"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-gray-400">
+                      <span
+                        className={cn(
+                          "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
+                          t.category?.name
+                            ? (CATEGORY_ICON_BG[t.category.name] ?? "bg-gray-100")
+                            : "bg-gray-100",
+                        )}
+                      >
                         {t.category?.name ? (
                           (CATEGORY_ICONS[t.category.name] ?? (
-                            <TrendingUp size={20} className="text-gray-400" />
+                            <TrendingUp size={20} className="text-gray-500" />
                           ))
                         ) : (
-                          <TrendingUp size={20} className="text-gray-400" />
+                          <TrendingUp size={20} className="text-gray-500" />
                         )}
                       </span>
                       <div>
