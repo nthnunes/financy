@@ -300,10 +300,11 @@ export default function Transactions() {
           )}
           {filtered.length > 0 && (
             <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-100">
-              <p className="text-sm text-gray-600">
-                {PAGE_SIZE * (page - 1) + 1} a{" "}
-                {Math.min(PAGE_SIZE * page, filtered.length)} |{" "}
-                {filtered.length} resultado(s)
+              <p className="text-sm text-gray-700">
+                <span className="font-medium">{PAGE_SIZE * (page - 1) + 1}</span> a{" "}
+                <span className="font-medium">{Math.min(PAGE_SIZE * page, filtered.length)}</span> |{" "}
+                {filtered.length}{" "}
+                {filtered.length === 1 ? "resultado" : "resultados"}
               </p>
               <div className="flex gap-1">
                 <Button
