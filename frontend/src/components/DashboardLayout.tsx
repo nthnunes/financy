@@ -47,7 +47,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </nav>
             <Link
               to="/perfil"
-              className="flex-shrink-0 w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 font-medium text-sm hover:bg-gray-300 transition-colors"
+              className="flex-shrink-0 w-9 h-9 rounded-full bg-gray-300 flex items-center justify-center text-gray-800 font-medium text-sm hover:bg-gray-300 transition-colors"
               title="Perfil"
             >
               {initials}
