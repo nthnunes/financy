@@ -1,52 +1,17 @@
 import { Link } from "react-router-dom";
-import {
-  Wallet,
-  ArrowUp,
-  ArrowDown,
-  Plus,
-  Utensils,
-  Car,
-  ShoppingCart,
-  TrendingUp,
-  Ticket,
-  Home,
-} from "lucide-react";
+import { Wallet, ArrowUp, ArrowDown, Plus, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
 import { useTransactions } from "@/hooks/useTransactions";
 import { useCategories } from "@/hooks/useCategories";
+import {
+  getCategoryIcon,
+  getCategoryIconBgClass,
+  getCategoryColorClasses,
+  getCategoryIconColorClass,
+} from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
 import { useState, useMemo } from "react";
-
-const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  Alimentação: <Utensils size={20} className="text-blue-500" />,
-  Transporte: <Car size={20} className="text-purple-500" />,
-  Mercado: <ShoppingCart size={20} className="text-orange-500" />,
-  Investimento: <TrendingUp size={20} className="text-green-500" />,
-  Utilidades: <Home size={20} className="text-yellow-600" />,
-  Salário: <TrendingUp size={20} className="text-green-600" />,
-  Entretenimento: <Ticket size={20} className="text-pink-500" />,
-};
-
-const CATEGORY_COLORS: Record<string, string> = {
-  Alimentação: "bg-blue-100 text-blue-800",
-  Transporte: "bg-purple-100 text-purple-800",
-  Mercado: "bg-orange-100 text-orange-800",
-  Investimento: "bg-green-100 text-green-800",
-  Utilidades: "bg-yellow-100 text-yellow-800",
-  Salário: "bg-green-100 text-green-800",
-  Entretenimento: "bg-pink-100 text-pink-800",
-};
-
-const CATEGORY_ICON_BG: Record<string, string> = {
-  Alimentação: "bg-blue-100",
-  Transporte: "bg-purple-100",
-  Mercado: "bg-orange-100",
-  Investimento: "bg-green-100",
-  Utilidades: "bg-yellow-100",
-  Salário: "bg-green-100",
-  Entretenimento: "bg-pink-100",
-};
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("pt-BR", {
@@ -210,16 +175,14 @@ export default function Dashboard() {
                       <span
                         className={cn(
                           "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
-                          t.category?.name
-                            ? (CATEGORY_ICON_BG[t.category.name] ?? "bg-gray-100")
-                            : "bg-gray-100",
+                          getCategoryIconBgClass(t.category?.color ?? null),
                         )}
                       >
-                        {t.category?.name ? (
-                          (CATEGORY_ICONS[t.category.name] ?? (
-                            <TrendingUp size={20} className="text-gray-500" />
-                          ))
-                        ) : (
+                        {getCategoryIcon(
+                          t.category?.icon ?? null,
+                          20,
+                          getCategoryIconColorClass(t.category?.color ?? null),
+                        ) ?? (
                           <TrendingUp size={20} className="text-gray-500" />
                         )}
                       </span>
@@ -236,10 +199,7 @@ export default function Dashboard() {
                       <span
                         className={cn(
                           "inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium",
-                          t.category?.name
-                            ? (CATEGORY_COLORS[t.category.name] ??
-                                "bg-gray-100 text-gray-800")
-                            : "bg-gray-100 text-gray-500",
+                          getCategoryColorClasses(t.category?.color ?? null),
                         )}
                       >
                         {t.category?.name ?? "-"}
@@ -313,7 +273,7 @@ export default function Dashboard() {
                     <span
                       className={cn(
                         "inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium",
-                        CATEGORY_COLORS[c.name] ?? "bg-gray-100 text-gray-800",
+                        getCategoryColorClasses(c.color ?? null),
                       )}
                     >
                       {c.name}

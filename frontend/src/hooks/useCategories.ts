@@ -10,6 +10,9 @@ import {
 export interface Category {
   id: string;
   name: string;
+  description: string | null;
+  icon: string;
+  color: string;
   userId: string;
 }
 
@@ -30,7 +33,12 @@ export function useCreateCategory() {
   const client = getGraphQLClient();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (input: { name: string }) => {
+    mutationFn: async (input: {
+      name: string;
+      description?: string | null;
+      icon: string;
+      color: string;
+    }) => {
       const data = await client.request<{ createCategory: Category }>(
         CREATE_CATEGORY,
         { input },
@@ -51,7 +59,12 @@ export function useUpdateCategory() {
       input,
     }: {
       id: string;
-      input: { name: string };
+      input: {
+        name?: string;
+        description?: string | null;
+        icon: string;
+        color: string;
+      };
     }) => {
       const data = await client.request<{ updateCategory: Category }>(
         UPDATE_CATEGORY,

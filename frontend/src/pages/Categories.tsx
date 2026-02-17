@@ -1,47 +1,18 @@
 import { useState } from "react";
-import {
-  Plus,
-  Pencil,
-  Trash2,
-  Tag,
-  Utensils,
-  ShoppingCart,
-  Briefcase,
-  Heart,
-  Car,
-  Home,
-  Ticket,
-  TrendingUp,
-} from "lucide-react";
+import { Plus, Pencil, Trash2, Tag, TrendingUp, Utensils } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { CategoryFormDialog } from "@/components/CategoryFormDialog";
 import { useCategories, type Category } from "@/hooks/useCategories";
 import { useDeleteCategory } from "@/hooks/useCategories";
 import { useTransactions } from "@/hooks/useTransactions";
+import {
+  getCategoryIcon,
+  getCategoryIconBgClass,
+  getCategoryColorClasses,
+  getCategoryIconColorClass,
+} from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
-
-const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  Alimentação: <Utensils size={24} className="text-blue-500" />,
-  Mercado: <ShoppingCart size={24} className="text-orange-500" />,
-  Salário: <Briefcase size={24} className="text-green-500" />,
-  Saúde: <Heart size={24} className="text-pink-500" />,
-  Transporte: <Car size={24} className="text-purple-500" />,
-  Utilidades: <Home size={24} className="text-yellow-600" />,
-  Entretenimento: <Ticket size={24} className="text-pink-500" />,
-  Investimento: <TrendingUp size={24} className="text-green-500" />,
-};
-
-const CATEGORY_COLORS: Record<string, string> = {
-  Alimentação: "bg-blue-100 text-blue-800",
-  Mercado: "bg-orange-100 text-orange-800",
-  Salário: "bg-green-100 text-green-800",
-  Saúde: "bg-pink-100 text-pink-800",
-  Transporte: "bg-purple-100 text-purple-800",
-  Utilidades: "bg-yellow-100 text-yellow-800",
-  Entretenimento: "bg-pink-100 text-pink-800",
-  Investimento: "bg-green-100 text-green-800",
-};
 
 function getCategoryStats(
   transactions: { categoryId: string | null }[],
@@ -161,8 +132,17 @@ export default function Categories() {
                 )}
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-3">
-                    <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
-                      {CATEGORY_ICONS[c.name] ?? <Tag size={24} />}
+                    <div
+                      className={cn(
+                        "w-12 h-12 rounded-xl flex items-center justify-center",
+                        getCategoryIconBgClass(c.color ?? null),
+                      )}
+                    >
+                      {getCategoryIcon(
+                        c.icon ?? null,
+                        24,
+                        getCategoryIconColorClass(c.color ?? null),
+                      ) ?? <Tag size={24} className="text-gray-500" />}
                     </div>
                     <div className="flex gap-1">
                       <button
@@ -191,7 +171,7 @@ export default function Categories() {
                   <span
                     className={cn(
                       "inline-block mt-2 px-2.5 py-0.5 rounded-full text-xs font-medium",
-                      CATEGORY_COLORS[c.name] ?? "bg-gray-100 text-gray-800",
+                      getCategoryColorClasses(c.color ?? null),
                     )}
                   >
                     {c.name}

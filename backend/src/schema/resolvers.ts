@@ -26,6 +26,9 @@ function formatUser(user: {
 function formatCategory(category: {
   id: string;
   name: string;
+  description: string | null;
+  icon: string;
+  color: string;
   userId: string;
 }) {
   return category;
@@ -39,7 +42,14 @@ function formatTransaction(transaction: {
   date: Date;
   categoryId: string | null;
   userId: string;
-  category?: { id: string; name: string; userId: string } | null;
+  category?: {
+    id: string;
+    name: string;
+    description: string | null;
+    icon: string;
+    color: string;
+    userId: string;
+  } | null;
 }) {
   return {
     ...transaction,
@@ -121,18 +131,44 @@ export const resolvers = {
     },
     createCategory: async (
       _: unknown,
-      { input }: { input: { name: string } },
+      {
+        input,
+      }: {
+        input: {
+          name: string;
+          description?: string | null;
+          icon: string;
+          color: string;
+        };
+      },
       context: Context,
     ) => {
       const userId = requireAuth(context);
       const category = await context.prisma.category.create({
-        data: { name: input.name, userId },
+        data: {
+          name: input.name,
+          description: input.description ?? null,
+          icon: input.icon,
+          color: input.color,
+          userId,
+        },
       });
       return formatCategory(category);
     },
     updateCategory: async (
       _: unknown,
-      { id, input }: { id: string; input: { name: string } },
+      {
+        id,
+        input,
+      }: {
+        id: string;
+        input: {
+          name?: string;
+          description?: string | null;
+          icon: string;
+          color: string;
+        };
+      },
       context: Context,
     ) => {
       const userId = requireAuth(context);
@@ -146,7 +182,14 @@ export const resolvers = {
       }
       const category = await context.prisma.category.update({
         where: { id },
-        data: { name: input.name },
+        data: {
+          ...(input.name !== undefined && { name: input.name }),
+          ...(input.description !== undefined && {
+            description: input.description,
+          }),
+          icon: input.icon,
+          color: input.color,
+        },
       });
       return formatCategory(category);
     },

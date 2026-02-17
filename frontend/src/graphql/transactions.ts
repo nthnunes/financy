@@ -13,6 +13,9 @@ export const GET_TRANSACTIONS = gql`
       category {
         id
         name
+        description
+        icon
+        color
         userId
       }
     }
@@ -32,6 +35,9 @@ export const CREATE_TRANSACTION = gql`
       category {
         id
         name
+        description
+        icon
+        color
         userId
       }
     }
@@ -51,6 +57,9 @@ export const UPDATE_TRANSACTION = gql`
       category {
         id
         name
+        description
+        icon
+        color
         userId
       }
     }

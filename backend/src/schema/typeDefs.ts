@@ -14,6 +14,9 @@ export const typeDefs = `#graphql
   type Category {
     id: ID!
     name: String!
+    description: String
+    icon: String!
+    color: String!
     userId: String!
   }
 
@@ -41,10 +44,16 @@ export const typeDefs = `#graphql
 
   input CreateCategoryInput {
     name: String!
+    description: String
+    icon: String!
+    color: String!
   }
 
   input UpdateCategoryInput {
-    name: String!
+    name: String
+    description: String
+    icon: String!
+    color: String!
   }
 
   input CreateTransactionInput {

@@ -1,19 +1,5 @@
 import { useState, useMemo } from "react";
-import {
-  Plus,
-  Search,
-  Pencil,
-  Trash2,
-  ArrowDown,
-  ArrowUp,
-  Utensils,
-  Car,
-  ShoppingCart,
-  TrendingUp,
-  Tag,
-  Home,
-  Ticket,
-} from "lucide-react";
+import { Plus, Search, Pencil, Trash2, ArrowDown, ArrowUp, Tag } from "lucide-react";
 import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -22,27 +8,13 @@ import { TransactionFormDialog } from "@/components/TransactionFormDialog";
 import { useTransactions, type Transaction } from "@/hooks/useTransactions";
 import { useCategories } from "@/hooks/useCategories";
 import { useDeleteTransaction } from "@/hooks/useTransactions";
+import {
+  getCategoryIcon,
+  getCategoryIconBgClass,
+  getCategoryColorClasses,
+  getCategoryIconColorClass,
+} from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
-
-const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  Alimentação: <Utensils size={20} className="text-blue-500" />,
-  Transporte: <Car size={20} className="text-purple-500" />,
-  Mercado: <ShoppingCart size={20} className="text-orange-500" />,
-  Investimento: <TrendingUp size={20} className="text-green-500" />,
-  Utilidades: <Home size={20} className="text-yellow-600" />,
-  Salário: <TrendingUp size={20} className="text-green-600" />,
-  Entretenimento: <Ticket size={20} className="text-pink-500" />,
-};
-
-const CATEGORY_COLORS: Record<string, string> = {
-  Alimentação: "bg-blue-100 text-blue-800",
-  Transporte: "bg-purple-100 text-purple-800",
-  Mercado: "bg-orange-100 text-orange-800",
-  Investimento: "bg-green-100 text-green-800",
-  Utilidades: "bg-yellow-100 text-yellow-800",
-  Salário: "bg-green-100 text-green-800",
-  Entretenimento: "bg-pink-100 text-pink-800",
-};
 
 const PAGE_SIZE = 10;
 
@@ -198,13 +170,18 @@ export default function Transactions() {
                   >
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <span className="text-gray-400">
-                          {t.category?.name ? (
-                            (CATEGORY_ICONS[t.category.name] ?? (
-                              <Tag size={20} className="text-gray-400" />
-                            ))
-                          ) : (
-                            <Tag size={20} className="text-gray-400" />
+                        <span
+                          className={cn(
+                            "w-9 h-9 rounded-lg flex items-center justify-center shrink-0",
+                            getCategoryIconBgClass(t.category?.color ?? null),
+                          )}
+                        >
+                          {getCategoryIcon(
+                            t.category?.icon ?? null,
+                            18,
+                            getCategoryIconColorClass(t.category?.color ?? null),
+                          ) ?? (
+                            <Tag size={18} className="text-gray-500" />
                           )}
                         </span>
                         <span className="font-medium text-gray-900">
@@ -219,10 +196,7 @@ export default function Transactions() {
                       <span
                         className={cn(
                           "inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium",
-                          t.category?.name
-                            ? (CATEGORY_COLORS[t.category.name] ??
-                                "bg-gray-100 text-gray-800")
-                            : "bg-gray-100 text-gray-500",
+                          getCategoryColorClasses(t.category?.color ?? null),
                         )}
                       >
                         {t.category?.name ?? "-"}
