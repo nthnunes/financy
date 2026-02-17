@@ -17,7 +17,7 @@ export default function Profile() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">Perfil</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-1">Perfil</h1>
       <p className="text-gray-500 mb-6">Gerencie suas informações</p>
 
       <Card className="max-w-md">
@@ -26,7 +26,7 @@ export default function Profile() {
             <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center text-2xl font-semibold text-gray-600 mb-4">
               {initials}
             </div>
-            <h2 className="text-xl font-bold text-gray-900">{user?.name}</h2>
+            <h2 className="text-xl font-bold text-gray-800">{user?.name}</h2>
             <p className="text-gray-500 text-sm">{user?.email}</p>
           </div>
 
@@ -36,7 +36,7 @@ export default function Profile() {
               value={user?.name ?? ""}
               icon={<User size={20} />}
               readOnly
-              className="bg-gray-50 cursor-default"
+              className="bg-gray-100 cursor-default"
             />
             <Input
               label="E-mail"
@@ -44,7 +44,7 @@ export default function Profile() {
               value={user?.email ?? ""}
               icon={<Mail size={20} />}
               disabled
-              className="bg-gray-50 cursor-not-allowed"
+              className="bg-gray-100 cursor-not-allowed"
             />
             <p className="text-xs text-gray-500">
               O e-mail não pode ser alterado
@@ -56,7 +56,7 @@ export default function Profile() {
               type="button"
               variant="outline"
               size="lg"
-              className="w-full border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300"
+              className="w-full border-danger text-danger hover:bg-danger/10 hover:border-danger"
               onClick={logout}
             >
               <LogOut size={20} className="mr-2" />

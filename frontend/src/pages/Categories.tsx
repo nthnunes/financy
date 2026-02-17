@@ -47,7 +47,7 @@ export default function Categories() {
     <div>
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Categorias</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Categorias</h1>
           <p className="text-gray-500 mt-1">
             Organize suas transações por categorias
           </p>
@@ -65,7 +65,7 @@ export default function Categories() {
               <Tag size={24} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-gray-800">
                 {categories.length}
               </p>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
@@ -80,7 +80,7 @@ export default function Categories() {
               <TrendingUp size={24} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-gray-800">
                 {totalTransactions}
               </p>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
@@ -119,7 +119,7 @@ export default function Categories() {
                             deleteCategory.mutate(c.id);
                           }
                         }}
-                        className="p-2 rounded-full border border-gray-200 text-red-500 hover:bg-red-50 hover:border-red-100 transition-colors"
+                        className="p-2 rounded-full border border-gray-200 text-danger hover:bg-danger/10 hover:border-danger transition-colors"
                         aria-label="Excluir"
                       >
                         <Trash2 size={18} />
@@ -127,14 +127,14 @@ export default function Categories() {
                       <button
                         type="button"
                         onClick={() => openEdit(c)}
-                        className="p-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="p-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors"
                         aria-label="Editar"
                       >
                         <Pencil size={18} />
                       </button>
                     </div>
                   </div>
-                  <h3 className="font-bold text-gray-900 text-lg">{c.name}</h3>
+                  <h3 className="font-bold text-gray-800 text-lg">{c.name}</h3>
                   {c.description && (
                     <p className="mt-1 text-sm text-gray-500">
                       {c.description}

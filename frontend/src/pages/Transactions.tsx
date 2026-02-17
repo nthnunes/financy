@@ -139,7 +139,7 @@ export default function Transactions() {
     <div>
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Transações</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Transações</h1>
           <p className="text-gray-500 mt-1">
             Gerencie todas as suas transações financeiras
           </p>
@@ -221,7 +221,7 @@ export default function Transactions() {
           ) : (
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-200 bg-gray-50 text-left text-xs font-medium uppercase text-gray-500 tracking-wider">
+                <tr className="border-b border-gray-200 bg-gray-100 text-left text-xs font-medium uppercase text-gray-500 tracking-wider">
                   <th className="px-6 py-4">Descrição</th>
                   <th className="px-6 py-4">Data</th>
                   <th className="px-6 py-4">Categoria</th>
@@ -234,7 +234,7 @@ export default function Transactions() {
                 {paginated.map((t) => (
                   <tr
                     key={t.id}
-                    className="border-b border-gray-100 hover:bg-gray-50"
+                    className="border-b border-gray-100 hover:bg-gray-100"
                   >
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
@@ -252,7 +252,7 @@ export default function Transactions() {
                             ),
                           ) ?? <Tag size={18} className="text-gray-500" />}
                         </span>
-                        <span className="font-medium text-gray-900">
+                        <span className="font-medium text-gray-800">
                           {t.title}
                         </span>
                       </div>
@@ -275,8 +275,8 @@ export default function Transactions() {
                         className={cn(
                           "inline-flex items-center gap-1 text-sm font-medium",
                           t.type === "income"
-                            ? "text-green-600"
-                            : "text-red-600",
+                            ? "text-green-base"
+                            : "text-red-base",
                         )}
                       >
                         {t.type === "income" ? (
@@ -296,8 +296,8 @@ export default function Transactions() {
                       className={cn(
                         "px-6 py-4 font-medium",
                         t.type === "income"
-                          ? "text-green-600"
-                          : "text-gray-900",
+                          ? "text-green-base"
+                          : "text-gray-800",
                       )}
                     >
                       {formatCurrency(t.amount, t.type)}
@@ -319,7 +319,7 @@ export default function Transactions() {
                               deleteTransaction.mutate(t.id);
                             }
                           }}
-                          className="p-1.5 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600"
+                          className="p-1.5 rounded-lg text-gray-500 hover:bg-danger/10 hover:text-danger"
                           aria-label="Excluir"
                         >
                           <Trash2 size={18} />
@@ -332,7 +332,7 @@ export default function Transactions() {
             </table>
           )}
           {filtered.length > 0 && (
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-100">
               <p className="text-sm text-gray-600">
                 {PAGE_SIZE * (page - 1) + 1} a{" "}
                 {Math.min(PAGE_SIZE * page, filtered.length)} |{" "}
