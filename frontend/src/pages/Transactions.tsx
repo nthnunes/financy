@@ -6,7 +6,6 @@ import {
   Trash2,
   ArrowDown,
   ArrowUp,
-  Tag,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -16,12 +15,8 @@ import { TransactionFormDialog } from "@/components/TransactionFormDialog";
 import { useTransactions, type Transaction } from "@/hooks/useTransactions";
 import { useCategories } from "@/hooks/useCategories";
 import { useDeleteTransaction } from "@/hooks/useTransactions";
+import { CategoryIcon } from "@/components/CategoryIcon";
 import { CategoryTag } from "@/components/CategoryTag";
-import {
-  getCategoryIcon,
-  getCategoryIconBgClass,
-  getCategoryIconColorClass,
-} from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
 
 const PAGE_SIZE = 10;
@@ -238,20 +233,10 @@ export default function Transactions() {
                   >
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <span
-                          className={cn(
-                            "w-9 h-9 rounded-lg flex items-center justify-center shrink-0",
-                            getCategoryIconBgClass(t.category?.color ?? null),
-                          )}
-                        >
-                          {getCategoryIcon(
-                            t.category?.icon ?? null,
-                            18,
-                            getCategoryIconColorClass(
-                              t.category?.color ?? null,
-                            ),
-                          ) ?? <Tag size={18} className="text-gray-500" />}
-                        </span>
+                        <CategoryIcon
+                          icon={t.category!.icon}
+                          color={t.category!.color}
+                        />
                         <span className="font-medium text-gray-800">
                           {t.title}
                         </span>

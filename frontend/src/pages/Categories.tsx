@@ -6,9 +6,8 @@ import { CategoryFormDialog } from "@/components/CategoryFormDialog";
 import { useCategories, type Category } from "@/hooks/useCategories";
 import { useDeleteCategory } from "@/hooks/useCategories";
 import { useTransactions } from "@/hooks/useTransactions";
+import { CategoryIcon } from "@/components/CategoryIcon";
 import { CategoryTag } from "@/components/CategoryTag";
-import { getCategoryIcon, getCategoryIconBgClass } from "@/lib/categoryOptions";
-import { cn } from "@/lib/cn";
 
 function getCategoryStats(
   transactions: { categoryId: string | null }[],
@@ -98,16 +97,7 @@ export default function Categories() {
               <Card key={c.id}>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-3">
-                    <div
-                      className={cn(
-                        "w-12 h-12 rounded-xl flex items-center justify-center text-white",
-                        getCategoryIconBgClass(c.color ?? null),
-                      )}
-                    >
-                      {getCategoryIcon(c.icon ?? null, 24, "text-white") ?? (
-                        <Tag size={24} className="text-white" />
-                      )}
-                    </div>
+                    <CategoryIcon icon={c.icon} color={c.color} />
                     <div className="flex gap-1">
                       <button
                         type="button"

@@ -4,19 +4,14 @@ import {
   CircleArrowUp,
   CircleArrowDown,
   Plus,
-  TrendingUp,
   ChevronRight,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
 import { useTransactions } from "@/hooks/useTransactions";
 import { useCategories } from "@/hooks/useCategories";
+import { CategoryIcon } from "@/components/CategoryIcon";
 import { CategoryTag } from "@/components/CategoryTag";
-import {
-  getCategoryIcon,
-  getCategoryIconBgClass,
-  getCategoryIconColorClass,
-} from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
 import { useState, useMemo } from "react";
 
@@ -176,18 +171,10 @@ export default function Dashboard() {
                     key={t.id}
                     className="grid grid-cols-[auto_1fr_7rem_10rem] items-center gap-3 px-6 py-4 hover:bg-gray-100"
                   >
-                    <span
-                      className={cn(
-                        "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
-                        getCategoryIconBgClass(t.category?.color ?? null),
-                      )}
-                    >
-                      {getCategoryIcon(
-                        t.category?.icon ?? null,
-                        20,
-                        getCategoryIconColorClass(t.category?.color ?? null),
-                      ) ?? <TrendingUp size={20} className="text-gray-500" />}
-                    </span>
+                    <CategoryIcon
+                      icon={t.category!.icon}
+                      color={t.category!.color}
+                    />
                     <div className="min-w-0">
                       <p className="text-base font-medium text-gray-800 truncate">
                         {t.title}
