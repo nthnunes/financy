@@ -140,8 +140,7 @@ export default function Transactions() {
             Gerencie todas as suas transações financeiras
           </p>
         </div>
-        <Button variant="primary" size="md" onClick={openCreate}>
-          <Plus size={16} />
+        <Button icon={Plus} size="md" onClick={openCreate}>
           Nova transação
         </Button>
       </div>

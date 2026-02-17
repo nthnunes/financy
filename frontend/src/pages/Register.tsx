@@ -111,8 +111,7 @@ export default function Register() {
           Já tem uma conta?
         </p>
         <Link to="/" className="mt-4 block">
-          <Button type="button" variant="outline" size="md" className="w-full">
-            <LogIn size={20} />
+          <Button type="button" icon={LogIn} variant="outline" size="md" className="w-full">
             Fazer login
           </Button>
         </Link>

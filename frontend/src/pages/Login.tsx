@@ -110,8 +110,7 @@ export default function Login() {
           Ainda não tem uma conta?
         </p>
         <Link to="/cadastro" className="mt-4 block">
-          <Button type="button" variant="outline" size="md" className="w-full">
-            <UserRoundPlus size={20} />
+          <Button type="button" icon={UserRoundPlus} variant="outline" size="md" className="w-full">
             Criar conta
           </Button>
         </Link>
