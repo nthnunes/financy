@@ -12,7 +12,6 @@ import {
   Home,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
 import { useTransactions } from "@/hooks/useTransactions";
 import { useCategories } from "@/hooks/useCategories";
@@ -118,7 +117,7 @@ export default function Dashboard() {
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Saldo total
               </p>
-              <p className="text-xl font-bold text-gray-900">
+              <p className="text-[28px] font-bold text-gray-900">
                 R${" "}
                 {total.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
@@ -137,7 +136,7 @@ export default function Dashboard() {
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Receitas do mês
               </p>
-              <p className="text-xl font-bold text-gray-900">
+              <p className="text-[28px] font-bold text-gray-900">
                 R${" "}
                 {income.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
@@ -156,7 +155,7 @@ export default function Dashboard() {
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Despesas do mês
               </p>
-              <p className="text-xl font-bold text-gray-900">
+              <p className="text-[28px] font-bold text-gray-900">
                 R${" "}
                 {expense.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
@@ -168,14 +167,16 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card className="md:col-span-2">
           <CardContent className="p-0">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h2 className="font-bold text-gray-900">Transações recentes</h2>
+              <h2 className="text-base font-semibold uppercase text-gray-400 tracking-wide">
+                Transações recentes
+              </h2>
               <Link
                 to="/transacoes"
-                className="text-sm font-medium text-primary hover:underline"
+                className="text-sm font-medium text-primary hover:underline flex items-center gap-0.5"
               >
                 Ver todas &gt;
               </Link>
@@ -206,7 +207,7 @@ export default function Dashboard() {
                         )}
                       </span>
                       <div>
-                        <p className="font-medium text-gray-900">{t.title}</p>
+                        <p className="text-base font-medium text-gray-900">{t.title}</p>
                         <p className="text-sm text-gray-500">
                           {formatDate(t.date)}
                         </p>
@@ -253,26 +254,28 @@ export default function Dashboard() {
                 ))
               )}
             </div>
-            <div className="px-6 py-4 border-t border-gray-100">
-              <Button
-                variant="primary"
-                size="md"
+            <div className="px-6 py-4 border-t border-gray-100 flex justify-center">
+              <button
+                type="button"
                 onClick={() => setModalOpen(true)}
+                className="inline-flex items-center gap-1.5 text-primary font-medium text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
               >
-                <Plus size={20} strokeWidth={2.5} className="mr-1.5" />
+                <Plus size={18} strokeWidth={2.5} />
                 Nova transação
-              </Button>
+              </button>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="md:col-span-1">
           <CardContent className="p-0">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h2 className="font-bold text-gray-900">Categorias</h2>
+              <h2 className="text-base font-semibold uppercase text-gray-400 tracking-wide">
+                Categorias
+              </h2>
               <Link
                 to="/categorias"
-                className="text-sm font-medium text-primary hover:underline"
+                className="text-sm font-medium text-primary hover:underline flex items-center gap-0.5"
               >
                 Gerenciar &gt;
               </Link>
