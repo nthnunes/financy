@@ -43,10 +43,30 @@ function formatCurrency(value: number, type: string) {
   return type === "income" ? `+ R$ ${n}` : `- R$ ${n}`;
 }
 
+const MONTH_NAMES = [
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
+];
+
+function buildPeriodOptions() {
+  const options = [{ value: "all", label: "Todos" }];
+  const now = new Date();
+  for (let i = 0; i < 24; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    const value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+    const label = `${MONTH_NAMES[d.getMonth()]} / ${d.getFullYear()}`;
+    options.push({ value, label });
+  }
+  return options;
+}
+
+const periodOptions = buildPeriodOptions();
+
 export default function Transactions() {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
+  const [periodFilter, setPeriodFilter] = useState(periodOptions[1].value);
   const [page, setPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Transaction | null>(null);
@@ -77,8 +97,14 @@ export default function Transactions() {
     if (categoryFilter !== "all") {
       list = list.filter((t) => t.categoryId === categoryFilter);
     }
+    if (periodFilter !== "all") {
+      list = list.filter((t) => {
+        const [y, m] = t.date.split("T")[0].split("-");
+        return `${y}-${m}` === periodFilter;
+      });
+    }
     return list;
-  }, [transactions, search, typeFilter, categoryFilter]);
+  }, [transactions, search, typeFilter, categoryFilter, periodFilter]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE) || 1;
   const paginated = useMemo(() => {
@@ -115,9 +141,12 @@ export default function Transactions() {
       </div>
 
       <Card className="mb-6">
-        <CardContent className="p-4">
-          <div className="flex flex-wrap gap-3 items-end">
-            <div className="flex-1 min-w-[200px]">
+        <CardContent className="p-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Buscar
+              </label>
               <Input
                 placeholder="Buscar por descrição"
                 value={search}
@@ -128,24 +157,45 @@ export default function Transactions() {
                 icon={<Search size={20} />}
               />
             </div>
-            <Select
-              options={typeOptions}
-              value={typeFilter}
-              onChange={(e) => {
-                setTypeFilter(e.target.value);
-                setPage(1);
-              }}
-              className="w-[140px]"
-            />
-            <Select
-              options={categoryOptions}
-              value={categoryFilter}
-              onChange={(e) => {
-                setCategoryFilter(e.target.value);
-                setPage(1);
-              }}
-              className="w-[160px]"
-            />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Tipo
+              </label>
+              <Select
+                options={typeOptions}
+                value={typeFilter}
+                onChange={(e) => {
+                  setTypeFilter(e.target.value);
+                  setPage(1);
+                }}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Categoria
+              </label>
+              <Select
+                options={categoryOptions}
+                value={categoryFilter}
+                onChange={(e) => {
+                  setCategoryFilter(e.target.value);
+                  setPage(1);
+                }}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Período
+              </label>
+              <Select
+                options={periodOptions}
+                value={periodFilter}
+                onChange={(e) => {
+                  setPeriodFilter(e.target.value);
+                  setPage(1);
+                }}
+              />
+            </div>
           </div>
         </CardContent>
       </Card>
