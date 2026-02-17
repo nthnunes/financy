@@ -141,7 +141,7 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
         <Card className="md:col-span-2">
           <CardContent className="p-0">
             <div className="flex items-center justify-between pl-6 pr-3 py-5 border-b border-gray-200">
@@ -226,15 +226,16 @@ export default function Dashboard() {
 
         <Card className="md:col-span-1">
           <CardContent className="p-0">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+            <div className="flex items-center justify-between pl-6 pr-3 py-5 border-b border-gray-200">
               <h2 className="text-sm font-semibold uppercase text-gray-400 tracking-wide">
                 Categorias
               </h2>
               <Link
                 to="/categorias"
-                className="text-sm font-medium text-brand-base hover:underline flex items-center gap-0.5"
+                className="text-sm font-medium text-brand-base flex items-center gap-1"
               >
-                Gerenciar &gt;
+                Gerenciar
+                <ChevronRight size={20} />
               </Link>
             </div>
             <div className="divide-y divide-gray-200">
