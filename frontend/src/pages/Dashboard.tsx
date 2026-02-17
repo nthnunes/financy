@@ -169,7 +169,7 @@ export default function Dashboard() {
                 recentTransactions.map((t) => (
                   <div
                     key={t.id}
-                    className="grid grid-cols-[auto_1fr_7rem_10rem] items-center gap-3 px-6 py-4 hover:bg-gray-100"
+                    className="grid grid-cols-[auto_1fr_7rem_10rem] items-center gap-3 px-6 py-4"
                   >
                     <CategoryIcon
                       icon={t.category!.icon}
