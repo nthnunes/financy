@@ -3,7 +3,6 @@ import {
   Wallet,
   ArrowUp,
   ArrowDown,
-  Tag,
   Plus,
   Utensils,
   Car,
