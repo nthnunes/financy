@@ -3,8 +3,6 @@ import {
   Wallet,
   CircleArrowUp,
   CircleArrowDown,
-  ArrowUp,
-  ArrowDown,
   Plus,
   TrendingUp,
 } from "lucide-react";
@@ -150,7 +148,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="md:col-span-2">
           <CardContent className="p-0">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
               <h2 className="text-sm font-semibold uppercase text-gray-400 tracking-wide">
                 Transações recentes
               </h2>
@@ -161,7 +159,7 @@ export default function Dashboard() {
                 Ver todas &gt;
               </Link>
             </div>
-            <div className="divide-y divide-gray-100">
+            <div className="divide-y divide-gray-200">
               {isLoading ? (
                 <div className="p-6 text-center text-gray-500">
                   Carregando...
@@ -207,28 +205,21 @@ export default function Dashboard() {
                       >
                         {t.category?.name ?? "-"}
                       </span>
-                      <span
-                        className={cn(
-                          "font-medium",
-                          t.type === "income"
-                            ? "text-green-base"
-                            : "text-gray-800",
-                        )}
-                      >
+                      <span className="font-semibold text-gray-800 text-sm">
                         {formatCurrency(t.amount, t.type)}
                       </span>
                       <span
                         className={cn(
-                          "w-8 h-8 rounded-full flex items-center justify-center",
+                          "flex items-center justify-center shrink-0",
                           t.type === "income"
-                            ? "bg-green-light text-green-base"
-                            : "bg-red-light text-red-base",
+                            ? "text-green-base"
+                            : "text-red-base",
                         )}
                       >
                         {t.type === "income" ? (
-                          <ArrowUp size={16} strokeWidth={2.5} />
+                          <CircleArrowUp size={16} />
                         ) : (
-                          <ArrowDown size={16} strokeWidth={2.5} />
+                          <CircleArrowDown size={16} />
                         )}
                       </span>
                     </div>
@@ -236,13 +227,13 @@ export default function Dashboard() {
                 ))
               )}
             </div>
-            <div className="px-6 py-4 border-t border-gray-100 flex justify-center">
+            <div className="px-6 py-4 border-t border-gray-200 flex justify-center">
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
                 className="inline-flex items-center gap-1.5 text-brand-base font-medium text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-brand-base/20 rounded"
               >
-                <Plus size={18} strokeWidth={2.5} />
+                <Plus size={18} />
                 Nova transação
               </button>
             </div>
@@ -251,7 +242,7 @@ export default function Dashboard() {
 
         <Card className="md:col-span-1">
           <CardContent className="p-0">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
               <h2 className="text-sm font-semibold uppercase text-gray-400 tracking-wide">
                 Categorias
               </h2>
@@ -262,7 +253,7 @@ export default function Dashboard() {
                 Gerenciar &gt;
               </Link>
             </div>
-            <div className="divide-y divide-gray-100">
+            <div className="divide-y divide-gray-200">
               {categories.length === 0 ? (
                 <div className="p-6 text-center text-gray-500">
                   Nenhuma categoria ainda.
