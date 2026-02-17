@@ -157,10 +157,7 @@ export function CategoryFormDialog({
                   aria-label={`Ícone ${iconKey}`}
                 >
                   {IconComponent ? (
-                    <IconComponent
-                      size={20}
-                      className="text-gray-600"
-                    />
+                    <IconComponent size={20} className="text-gray-600" />
                   ) : null}
                 </button>
               );

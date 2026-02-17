@@ -182,9 +182,7 @@ export default function Dashboard() {
                           t.category?.icon ?? null,
                           20,
                           getCategoryIconColorClass(t.category?.color ?? null),
-                        ) ?? (
-                          <TrendingUp size={20} className="text-gray-500" />
-                        )}
+                        ) ?? <TrendingUp size={20} className="text-gray-500" />}
                       </span>
                       <div>
                         <p className="text-base font-medium text-gray-900">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Pencil, Trash2, Tag, TrendingUp, Utensils } from "lucide-react";
+import { Plus, Pencil, Trash2, Tag, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { CategoryFormDialog } from "@/components/CategoryFormDialog";
@@ -10,7 +10,6 @@ import {
   getCategoryIcon,
   getCategoryIconBgClass,
   getCategoryColorClasses,
-  getCategoryIconColorClass,
 } from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
 
@@ -30,15 +29,6 @@ export default function Categories() {
   const deleteCategory = useDeleteCategory();
 
   const totalTransactions = transactions.length;
-  const mostUsed =
-    categories.length > 0
-      ? categories.reduce((a, b) =>
-          getCategoryStats(transactions, a.id) >=
-          getCategoryStats(transactions, b.id)
-            ? a
-            : b,
-        )
-      : null;
 
   const openCreate = () => {
     setEditing(null);
@@ -68,7 +58,7 @@ export default function Categories() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
             <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
@@ -99,21 +89,6 @@ export default function Categories() {
             </div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
-              <Utensils size={24} />
-            </div>
-            <div>
-              <p className="text-lg font-bold text-gray-900">
-                {mostUsed?.name ?? "-"}
-              </p>
-              <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
-                Categoria mais utilizada
-              </p>
-            </div>
-          </CardContent>
-        </Card>
       </div>
 
       {isLoading ? (
@@ -122,37 +97,21 @@ export default function Categories() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {categories.map((c) => {
             const count = getCategoryStats(transactions, c.id);
-            const isMostUsed = mostUsed?.id === c.id;
             return (
-              <Card key={c.id} className="relative">
-                {isMostUsed && (
-                  <span className="absolute top-3 right-3 text-xs font-medium text-primary bg-green-50 px-2 py-0.5 rounded">
-                    Mais utilizada
-                  </span>
-                )}
+              <Card key={c.id}>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <div
                       className={cn(
-                        "w-12 h-12 rounded-xl flex items-center justify-center",
+                        "w-12 h-12 rounded-xl flex items-center justify-center text-white",
                         getCategoryIconBgClass(c.color ?? null),
                       )}
                     >
-                      {getCategoryIcon(
-                        c.icon ?? null,
-                        24,
-                        getCategoryIconColorClass(c.color ?? null),
-                      ) ?? <Tag size={24} className="text-gray-500" />}
+                      {getCategoryIcon(c.icon ?? null, 24, "text-white") ?? (
+                        <Tag size={24} className="text-white" />
+                      )}
                     </div>
                     <div className="flex gap-1">
-                      <button
-                        type="button"
-                        onClick={() => openEdit(c)}
-                        className="p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                        aria-label="Editar"
-                      >
-                        <Pencil size={18} />
-                      </button>
                       <button
                         type="button"
                         onClick={() => {
@@ -160,25 +119,40 @@ export default function Categories() {
                             deleteCategory.mutate(c.id);
                           }
                         }}
-                        className="p-1.5 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600"
+                        className="p-2 rounded-full border border-gray-200 text-red-500 hover:bg-red-50 hover:border-red-100 transition-colors"
                         aria-label="Excluir"
                       >
                         <Trash2 size={18} />
                       </button>
+                      <button
+                        type="button"
+                        onClick={() => openEdit(c)}
+                        className="p-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+                        aria-label="Editar"
+                      >
+                        <Pencil size={18} />
+                      </button>
                     </div>
                   </div>
-                  <h3 className="font-bold text-gray-900">{c.name}</h3>
-                  <span
-                    className={cn(
-                      "inline-block mt-2 px-2.5 py-0.5 rounded-full text-xs font-medium",
-                      getCategoryColorClasses(c.color ?? null),
-                    )}
-                  >
-                    {c.name}
-                  </span>
-                  <p className="mt-2 text-sm text-gray-500">
-                    {count} {count === 1 ? "item" : "itens"}
-                  </p>
+                  <h3 className="font-bold text-gray-900 text-lg">{c.name}</h3>
+                  {c.description && (
+                    <p className="mt-1 text-sm text-gray-500">
+                      {c.description}
+                    </p>
+                  )}
+                  <div className="flex items-center justify-between mt-4 gap-2">
+                    <span
+                      className={cn(
+                        "inline-flex px-2.5 py-1 rounded-full text-xs font-medium",
+                        getCategoryColorClasses(c.color ?? null),
+                      )}
+                    >
+                      {c.name}
+                    </span>
+                    <span className="text-sm text-gray-500 shrink-0">
+                      {count} {count === 1 ? "item" : "itens"}
+                    </span>
+                  </div>
                 </CardContent>
               </Card>
             );
