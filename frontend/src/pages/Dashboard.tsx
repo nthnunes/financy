@@ -111,7 +111,7 @@ export default function Dashboard() {
           <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center text-green-base shrink-0">
-                <CircleArrowUp size={20} strokeWidth={2.5} />
+                <CircleArrowUp size={20} />
               </div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Receitas do mês
@@ -130,7 +130,7 @@ export default function Dashboard() {
           <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center text-red-base shrink-0">
-                <CircleArrowDown size={20} strokeWidth={2.5} />
+                <CircleArrowDown size={20} />
               </div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Despesas do mês
