@@ -110,7 +110,7 @@ export default function Dashboard() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center justify-center text-green-base shrink-0">
+              <div className="flex items-center justify-center text-brand-base shrink-0">
                 <CircleArrowUp size={20} />
               </div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
