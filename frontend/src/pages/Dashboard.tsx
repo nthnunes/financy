@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { Wallet, ArrowUp, ArrowDown, Plus, TrendingUp } from "lucide-react";
+import {
+  Wallet,
+  CircleArrowUp,
+  CircleArrowDown,
+  ArrowUp,
+  ArrowDown,
+  Plus,
+  TrendingUp,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
 import { useTransactions } from "@/hooks/useTransactions";
@@ -79,65 +87,62 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-1">Dashboard</h1>
-      <p className="text-gray-500 mb-6">Visão geral das suas finanças</p>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <Card>
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-purple-light flex items-center justify-center text-purple-base">
-              <Wallet size={24} />
-            </div>
-            <div>
+          <CardContent className="p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center justify-center text-purple-base shrink-0">
+                <Wallet size={20} />
+              </div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Saldo total
               </p>
-              <p className="text-[28px] font-bold text-gray-800">
-                R${" "}
-                {total.toLocaleString("pt-BR", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </p>
             </div>
+            <p className="text-[28px] font-bold text-gray-800">
+              R${" "}
+              {total.toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </p>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-green-light flex items-center justify-center text-green-base">
-              <ArrowUp size={24} strokeWidth={2.5} />
-            </div>
-            <div>
+          <CardContent className="p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center justify-center text-green-base shrink-0">
+                <CircleArrowUp size={20} strokeWidth={2.5} />
+              </div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Receitas do mês
               </p>
-              <p className="text-[28px] font-bold text-gray-800">
-                R${" "}
-                {income.toLocaleString("pt-BR", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </p>
             </div>
+            <p className="text-[28px] font-bold text-gray-800">
+              R${" "}
+              {income.toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </p>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-red-light flex items-center justify-center text-red-base">
-              <ArrowDown size={24} strokeWidth={2.5} />
-            </div>
-            <div>
+          <CardContent className="p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center justify-center text-red-base shrink-0">
+                <CircleArrowDown size={20} strokeWidth={2.5} />
+              </div>
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Despesas do mês
               </p>
-              <p className="text-[28px] font-bold text-gray-800">
-                R${" "}
-                {expense.toLocaleString("pt-BR", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </p>
             </div>
+            <p className="text-[28px] font-bold text-gray-800">
+              R${" "}
+              {expense.toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </p>
           </CardContent>
         </Card>
       </div>
