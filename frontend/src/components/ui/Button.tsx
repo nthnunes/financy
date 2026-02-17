@@ -18,7 +18,7 @@ export function Button({
     <button
       type="button"
       className={cn(
-        "rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
+        "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
         variant === "primary" &&
           "bg-primary text-white hover:bg-primary-dark border border-transparent",
         variant === "outline" &&

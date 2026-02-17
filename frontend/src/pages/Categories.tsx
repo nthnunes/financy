@@ -63,7 +63,7 @@ export default function Categories() {
           </p>
         </div>
         <Button variant="primary" size="md" onClick={openCreate}>
-          <Plus size={20} strokeWidth={2.5} className="mr-1.5" />
+          <Plus size={20} strokeWidth={2.5} />
           Nova categoria
         </Button>
       </div>

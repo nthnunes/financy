@@ -1,6 +1,14 @@
 import { useState, useMemo } from "react";
-import { Plus, Search, Pencil, Trash2, ArrowDown, ArrowUp, Tag } from "lucide-react";
-import { Card, CardHeader, CardContent } from "@/components/ui/Card";
+import {
+  Plus,
+  Search,
+  Pencil,
+  Trash2,
+  ArrowDown,
+  ArrowUp,
+  Tag,
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
@@ -101,7 +109,7 @@ export default function Transactions() {
           </p>
         </div>
         <Button variant="primary" size="md" onClick={openCreate}>
-          <Plus size={20} strokeWidth={2.5} className="mr-1.5" />
+          <Plus size={20} strokeWidth={2.5} />
           Nova transação
         </Button>
       </div>
@@ -179,10 +187,10 @@ export default function Transactions() {
                           {getCategoryIcon(
                             t.category?.icon ?? null,
                             18,
-                            getCategoryIconColorClass(t.category?.color ?? null),
-                          ) ?? (
-                            <Tag size={18} className="text-gray-500" />
-                          )}
+                            getCategoryIconColorClass(
+                              t.category?.color ?? null,
+                            ),
+                          ) ?? <Tag size={18} className="text-gray-500" />}
                         </span>
                         <span className="font-medium text-gray-900">
                           {t.title}
