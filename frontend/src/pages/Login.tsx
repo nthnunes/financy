@@ -30,52 +30,58 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
       <Link to="/" className="mb-8 block">
-        <img src="/Logo.svg" alt="FINANCY" className="h-9 w-auto" />
+        <img src="/Logo.svg" alt="FINANCY" className="h-8 w-auto" />
       </Link>
-      <div className="bg-white rounded-2xl shadow-sm p-8 w-full max-w-md">
-        <h1 className="text-xl font-bold text-gray-800">Fazer login</h1>
-        <p className="text-gray-500 text-sm mt-1">
-          Entre na sua conta para continuar
-        </p>
+      <div className="bg-white border border-gray-200 rounded-xl p-8 w-full max-w-md">
+        <div className="text-center flex flex-col gap-1">
+          <h1 className="text-xl font-bold text-gray-800">Fazer login</h1>
+          <p className="text-gray-600">Entre na sua conta para continuar</p>
+        </div>
 
         <form
           onSubmit={handleSubmit((data) => login.mutate(data))}
-          className="mt-6 space-y-4"
+          className="mt-8 space-y-6"
         >
-          <Input
-            label="E-mail"
-            type="email"
-            placeholder="mail@exemplo.com"
-            icon={<Mail size={20} />}
-            error={errors.email?.message}
-            {...register("email")}
-          />
-          <Input
-            label="Senha"
-            type={showPassword ? "text" : "password"}
-            placeholder="Digite sua senha"
-            icon={<Lock size={20} />}
-            rightIcon={
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="inline-flex items-center justify-center text-gray-400 hover:text-gray-600"
-              >
-                {showPassword ? <Eye size={20} /> : <EyeClosed size={20} />}
-              </button>
-            }
-            error={errors.password?.message}
-            {...register("password")}
-          />
+          <div className="space-y-4">
+            <Input
+              label="E-mail"
+              type="email"
+              placeholder="mail@exemplo.com"
+              icon={<Mail size={16} />}
+              error={errors.email?.message}
+              {...register("email")}
+            />
+            <Input
+              label="Senha"
+              type={showPassword ? "text" : "password"}
+              placeholder="Digite sua senha"
+              icon={<Lock size={16} />}
+              rightIcon={
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="inline-flex items-center justify-center text-gray-700"
+                >
+                  {showPassword ? <Eye size={16} /> : <EyeClosed size={16} />}
+                </button>
+              }
+              error={errors.password?.message}
+              {...register("password")}
+            />
+          </div>
+
           <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center gap-2 text-gray-600">
+            <label className="flex items-center gap-2 text-gray-700">
               <input
                 type="checkbox"
                 className="rounded border-gray-300 text-brand-base focus:ring-brand-base"
               />
               Lembrar-me
             </label>
-            <Link to="#" className="text-brand-base hover:underline">
+            <Link
+              to="#"
+              className="text-brand-base font-medium hover:underline"
+            >
               Recuperar senha
             </Link>
           </div>
@@ -96,14 +102,14 @@ export default function Login() {
         </form>
 
         <div className="mt-6 flex items-center gap-3">
-          <span className="flex-1 h-px bg-gray-200" />
+          <span className="flex-1 h-px bg-gray-300" />
           <span className="text-gray-500 text-sm">ou</span>
-          <span className="flex-1 h-px bg-gray-200" />
+          <span className="flex-1 h-px bg-gray-300" />
         </div>
         <p className="mt-6 text-center text-gray-600 text-sm">
           Ainda não tem uma conta?
         </p>
-        <Link to="/cadastro" className="mt-2 block">
+        <Link to="/cadastro" className="mt-4 block">
           <Button type="button" variant="outline" size="lg" className="w-full">
             <UserRoundPlus size={20} />
             Criar conta
