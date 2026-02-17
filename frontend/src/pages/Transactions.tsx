@@ -218,10 +218,10 @@ export default function Transactions() {
               <thead>
                 <tr className="border-b border-gray-200 bg-gray-100 text-left text-xs font-medium uppercase text-gray-500 tracking-wider">
                   <th className="px-6 py-4">Descrição</th>
-                  <th className="px-6 py-4">Data</th>
-                  <th className="px-6 py-4">Categoria</th>
-                  <th className="px-6 py-4">Tipo</th>
-                  <th className="px-6 py-4">Valor</th>
+                  <th className="px-6 py-4 text-center">Data</th>
+                  <th className="px-6 py-4 text-center">Categoria</th>
+                  <th className="px-6 py-4 text-center">Tipo</th>
+                  <th className="px-6 py-4 text-right">Valor</th>
                   <th className="px-6 py-4 w-24">Ações</th>
                 </tr>
               </thead>
@@ -242,15 +242,15 @@ export default function Transactions() {
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-gray-600">
+                    <td className="px-6 py-4 text-center text-gray-600">
                       {formatDate(t.date)}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 text-center">
                       <CategoryTag color={t.category?.color ?? null}>
                         {t.category?.name ?? "-"}
                       </CategoryTag>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 text-center">
                       <span
                         className={cn(
                           "inline-flex items-center gap-1 text-sm font-medium",
@@ -274,7 +274,7 @@ export default function Transactions() {
                     </td>
                     <td
                       className={cn(
-                        "px-6 py-4 font-medium",
+                        "px-6 py-4 font-medium text-right",
                         t.type === "income"
                           ? "text-green-base"
                           : "text-gray-800",
