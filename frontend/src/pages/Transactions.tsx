@@ -4,8 +4,8 @@ import {
   Search,
   Pencil,
   Trash2,
-  ArrowDown,
-  ArrowUp,
+  CircleArrowDown,
+  CircleArrowUp,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -253,7 +253,7 @@ export default function Transactions() {
                     <td className="px-6 py-4 text-center">
                       <span
                         className={cn(
-                          "inline-flex items-center gap-1 text-sm font-medium",
+                          "inline-flex items-center gap-2 text-sm font-medium",
                           t.type === "income"
                             ? "text-green-base"
                             : "text-red-base",
@@ -261,12 +261,12 @@ export default function Transactions() {
                       >
                         {t.type === "income" ? (
                           <>
-                            <ArrowUp size={16} strokeWidth={2.5} />
+                            <CircleArrowUp size={16} />
                             Entrada
                           </>
                         ) : (
                           <>
-                            <ArrowDown size={16} strokeWidth={2.5} />
+                            <CircleArrowDown size={16} />
                             Saída
                           </>
                         )}
