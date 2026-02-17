@@ -28,7 +28,7 @@ export default function Login() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-12">
       <Link to="/" className="mb-8 block">
         <img src="/Logo.svg" alt="FINANCY" className="h-8 w-auto" />
       </Link>
