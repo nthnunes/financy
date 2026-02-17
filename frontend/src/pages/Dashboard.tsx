@@ -81,7 +81,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-4">
