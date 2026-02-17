@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Wallet, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -29,12 +29,8 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <Link
-        to="/"
-        className="flex items-center gap-2 text-primary font-semibold text-xl mb-8"
-      >
-        <Wallet size={32} className="text-primary" />
-        FINANCY
+      <Link to="/" className="mb-8 block">
+        <img src="/Logo.svg" alt="FINANCY" className="h-9 w-auto" />
       </Link>
       <div className="bg-white rounded-2xl shadow-sm p-8 w-full max-w-md">
         <h1 className="text-xl font-bold text-gray-900">Fazer login</h1>

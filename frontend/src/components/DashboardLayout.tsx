@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { Wallet, TrendingUp, ArrowLeftRight, Tag, User } from "lucide-react";
+import { TrendingUp, ArrowLeftRight, Tag, User } from "lucide-react";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -28,12 +28,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link
-              to="/dashboard"
-              className="flex items-center gap-2 text-primary font-semibold text-xl"
-            >
-              <Wallet size={28} className="text-primary" />
-              FINANCY
+            <Link to="/dashboard" className="flex items-center">
+              <img src="/Logo.svg" alt="FINANCY" className="h-8 w-auto" />
             </Link>
             <nav className="flex items-center gap-6">
               {nav.map(({ path, label, icon: Icon }) => (
