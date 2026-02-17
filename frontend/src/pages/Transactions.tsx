@@ -232,7 +232,7 @@ export default function Transactions() {
                     className="border-b border-gray-100 hover:bg-gray-100"
                   >
                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-4">
                         <CategoryIcon
                           icon={t.category!.icon}
                           color={t.category!.color}
@@ -255,8 +255,8 @@ export default function Transactions() {
                         className={cn(
                           "inline-flex items-center gap-2 text-sm font-medium",
                           t.type === "income"
-                            ? "text-green-base"
-                            : "text-red-base",
+                            ? "text-green-dark"
+                            : "text-red-dark",
                         )}
                       >
                         {t.type === "income" ? (
@@ -272,14 +272,7 @@ export default function Transactions() {
                         )}
                       </span>
                     </td>
-                    <td
-                      className={cn(
-                        "px-6 py-4 font-medium text-right",
-                        t.type === "income"
-                          ? "text-green-base"
-                          : "text-gray-800",
-                      )}
-                    >
+                    <td className="px-6 py-4 font-semibold text-sm text-right text-gray-800">
                       {formatCurrency(t.amount, t.type)}
                     </td>
                     <td className="px-6 py-4">
