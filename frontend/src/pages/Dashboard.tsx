@@ -171,7 +171,7 @@ export default function Dashboard() {
         <Card className="md:col-span-2">
           <CardContent className="p-0">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h2 className="text-base font-semibold uppercase text-gray-400 tracking-wide">
+              <h2 className="text-sm font-semibold uppercase text-gray-400 tracking-wide">
                 Transações recentes
               </h2>
               <Link
@@ -207,7 +207,9 @@ export default function Dashboard() {
                         )}
                       </span>
                       <div>
-                        <p className="text-base font-medium text-gray-900">{t.title}</p>
+                        <p className="text-base font-medium text-gray-900">
+                          {t.title}
+                        </p>
                         <p className="text-sm text-gray-500">
                           {formatDate(t.date)}
                         </p>
@@ -270,7 +272,7 @@ export default function Dashboard() {
         <Card className="md:col-span-1">
           <CardContent className="p-0">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h2 className="text-base font-semibold uppercase text-gray-400 tracking-wide">
+              <h2 className="text-sm font-semibold uppercase text-gray-400 tracking-wide">
                 Categorias
               </h2>
               <Link
