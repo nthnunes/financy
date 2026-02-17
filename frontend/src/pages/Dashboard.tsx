@@ -172,39 +172,39 @@ export default function Dashboard() {
                 recentTransactions.map((t) => (
                   <div
                     key={t.id}
-                    className="flex items-center justify-between px-6 py-4 hover:bg-gray-100"
+                    className="grid grid-cols-[auto_1fr_7rem_10rem] items-center gap-3 px-6 py-4 hover:bg-gray-100"
                   >
-                    <div className="flex items-center gap-3">
-                      <span
-                        className={cn(
-                          "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
-                          getCategoryIconBgClass(t.category?.color ?? null),
-                        )}
-                      >
-                        {getCategoryIcon(
-                          t.category?.icon ?? null,
-                          20,
-                          getCategoryIconColorClass(t.category?.color ?? null),
-                        ) ?? <TrendingUp size={20} className="text-gray-500" />}
-                      </span>
-                      <div>
-                        <p className="text-base font-medium text-gray-800">
-                          {t.title}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {formatDate(t.date)}
-                        </p>
-                      </div>
+                    <span
+                      className={cn(
+                        "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
+                        getCategoryIconBgClass(t.category?.color ?? null),
+                      )}
+                    >
+                      {getCategoryIcon(
+                        t.category?.icon ?? null,
+                        20,
+                        getCategoryIconColorClass(t.category?.color ?? null),
+                      ) ?? <TrendingUp size={20} className="text-gray-500" />}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-base font-medium text-gray-800 truncate">
+                        {t.title}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {formatDate(t.date)}
+                      </p>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex justify-center">
                       <span
                         className={cn(
-                          "inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium",
+                          "inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium w-fit",
                           getCategoryColorClasses(t.category?.color ?? null),
                         )}
                       >
                         {t.category?.name ?? "-"}
                       </span>
+                    </div>
+                    <span className="inline-flex items-center justify-end gap-3 px-2">
                       <span className="font-semibold text-gray-800 text-sm">
                         {formatCurrency(t.amount, t.type)}
                       </span>
@@ -217,12 +217,12 @@ export default function Dashboard() {
                         )}
                       >
                         {t.type === "income" ? (
-                          <CircleArrowUp size={16} />
+                          <CircleArrowUp size={16} strokeWidth={2.5} />
                         ) : (
-                          <CircleArrowDown size={16} />
+                          <CircleArrowDown size={16} strokeWidth={2.5} />
                         )}
                       </span>
-                    </div>
+                    </span>
                   </div>
                 ))
               )}
