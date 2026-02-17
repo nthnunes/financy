@@ -217,21 +217,18 @@ export default function Transactions() {
           ) : (
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-200 bg-gray-100 text-left text-xs font-medium uppercase text-gray-500 tracking-wider">
-                  <th className="px-6 py-4">Descrição</th>
-                  <th className="px-6 py-4 text-center">Data</th>
-                  <th className="px-6 py-4 text-center">Categoria</th>
-                  <th className="px-6 py-4 text-center">Tipo</th>
-                  <th className="px-6 py-4 text-right">Valor</th>
-                  <th className="px-6 py-4 w-24">Ações</th>
+                <tr className="border-b border-gray-200 text-left text-xs font-medium uppercase text-gray-500 tracking-wider">
+                  <th className="px-6 py-5">Descrição</th>
+                  <th className="px-6 py-5 text-center">Data</th>
+                  <th className="px-6 py-5 text-center">Categoria</th>
+                  <th className="px-6 py-5 text-center">Tipo</th>
+                  <th className="px-6 py-5 text-right">Valor</th>
+                  <th className="px-6 py-5 w-24">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 {paginated.map((t) => (
-                  <tr
-                    key={t.id}
-                    className="border-b border-gray-100 hover:bg-gray-100"
-                  >
+                  <tr key={t.id} className="border-b border-gray-200">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-4">
                         <CategoryIcon
