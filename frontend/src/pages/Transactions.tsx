@@ -16,10 +16,10 @@ import { TransactionFormDialog } from "@/components/TransactionFormDialog";
 import { useTransactions, type Transaction } from "@/hooks/useTransactions";
 import { useCategories } from "@/hooks/useCategories";
 import { useDeleteTransaction } from "@/hooks/useTransactions";
+import { CategoryTag } from "@/components/CategoryTag";
 import {
   getCategoryIcon,
   getCategoryIconBgClass,
-  getCategoryColorClasses,
   getCategoryIconColorClass,
 } from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
@@ -261,14 +261,9 @@ export default function Transactions() {
                       {formatDate(t.date)}
                     </td>
                     <td className="px-6 py-4">
-                      <span
-                        className={cn(
-                          "inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium",
-                          getCategoryColorClasses(t.category?.color ?? null),
-                        )}
-                      >
+                      <CategoryTag color={t.category?.color ?? null}>
                         {t.category?.name ?? "-"}
-                      </span>
+                      </CategoryTag>
                     </td>
                     <td className="px-6 py-4">
                       <span

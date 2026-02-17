@@ -11,10 +11,10 @@ import { Card, CardContent } from "@/components/ui/Card";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
 import { useTransactions } from "@/hooks/useTransactions";
 import { useCategories } from "@/hooks/useCategories";
+import { CategoryTag } from "@/components/CategoryTag";
 import {
   getCategoryIcon,
   getCategoryIconBgClass,
-  getCategoryColorClasses,
   getCategoryIconColorClass,
 } from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
@@ -197,14 +197,9 @@ export default function Dashboard() {
                       </p>
                     </div>
                     <div className="flex justify-center">
-                      <span
-                        className={cn(
-                          "inline-flex px-3 py-1 rounded-full text-sm font-medium w-fit",
-                          getCategoryColorClasses(t.category?.color ?? null),
-                        )}
-                      >
+                      <CategoryTag color={t.category?.color ?? null}>
                         {t.category?.name ?? "-"}
-                      </span>
+                      </CategoryTag>
                     </div>
                     <span className="inline-flex items-center justify-end gap-3 px-2">
                       <span className="font-semibold text-gray-800 text-sm">
@@ -266,14 +261,7 @@ export default function Dashboard() {
                     key={c.id}
                     className="flex items-center justify-between px-6 py-4 hover:bg-gray-100"
                   >
-                    <span
-                      className={cn(
-                        "inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium",
-                        getCategoryColorClasses(c.color ?? null),
-                      )}
-                    >
-                      {c.name}
-                    </span>
+                    <CategoryTag color={c.color ?? null}>{c.name}</CategoryTag>
                     <span className="text-sm text-gray-500">
                       {c.count} {c.count === 1 ? "item" : "itens"}
                     </span>

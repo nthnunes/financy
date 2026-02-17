@@ -6,11 +6,8 @@ import { CategoryFormDialog } from "@/components/CategoryFormDialog";
 import { useCategories, type Category } from "@/hooks/useCategories";
 import { useDeleteCategory } from "@/hooks/useCategories";
 import { useTransactions } from "@/hooks/useTransactions";
-import {
-  getCategoryIcon,
-  getCategoryIconBgClass,
-  getCategoryColorClasses,
-} from "@/lib/categoryOptions";
+import { CategoryTag } from "@/components/CategoryTag";
+import { getCategoryIcon, getCategoryIconBgClass } from "@/lib/categoryOptions";
 import { cn } from "@/lib/cn";
 
 function getCategoryStats(
@@ -141,14 +138,7 @@ export default function Categories() {
                     </p>
                   )}
                   <div className="flex items-center justify-between mt-4 gap-2">
-                    <span
-                      className={cn(
-                        "inline-flex px-2.5 py-1 rounded-full text-xs font-medium",
-                        getCategoryColorClasses(c.color ?? null),
-                      )}
-                    >
-                      {c.name}
-                    </span>
+                    <CategoryTag color={c.color ?? null}>{c.name}</CategoryTag>
                     <span className="text-sm text-gray-500 shrink-0">
                       {count} {count === 1 ? "item" : "itens"}
                     </span>
