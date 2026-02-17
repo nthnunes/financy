@@ -130,7 +130,7 @@ export function CategoryFormDialog({
           <input
             type="text"
             placeholder="Descrição da categoria"
-            className="w-full rounded-lg border border-gray-300 bg-white py-2.5 px-3 text-gray-900 placeholder-gray-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full rounded-lg border border-gray-300 bg-white py-2.5 px-3 text-gray-800 placeholder-gray-400 focus:border-brand-base focus:outline-none focus:ring-1 focus:ring-brand-base"
             {...register("description")}
           />
         </div>
@@ -151,7 +151,7 @@ export function CategoryFormDialog({
                   className={cn(
                     "w-10 h-10 rounded-lg flex items-center justify-center border transition-colors bg-white",
                     isSelected
-                      ? "border-2 border-primary"
+                      ? "border-2 border-brand-base"
                       : "border border-gray-200 hover:border-gray-300",
                   )}
                   aria-label={`Ícone ${iconKey}`}
@@ -180,13 +180,13 @@ export function CategoryFormDialog({
                   className={cn(
                     "flex-1 min-w-0 rounded-lg border-2 p-1 transition-colors",
                     isSelected
-                      ? "border-primary"
+                      ? "border-brand-base"
                       : "border-gray-200 hover:border-gray-300",
                   )}
                   aria-label={`Cor ${opt.value}`}
                 >
                   <div
-                    className={cn("h-5 w-full rounded-md", opt.swatchClass)}
+                    className={cn("h-6 w-full rounded-[4px]", opt.swatchClass)}
                   />
                 </button>
               );
@@ -204,7 +204,7 @@ export function CategoryFormDialog({
           Salvar
         </Button>
         {(createCategory.isError || updateCategory.isError) && (
-          <p className="text-sm text-red-500 text-center">
+          <p className="text-sm text-danger text-center">
             {(() => {
               const err = createCategory.error ?? updateCategory.error;
               return err instanceof Error ? err.message : "Erro ao salvar";
