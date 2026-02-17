@@ -5,6 +5,7 @@ import {
   CircleArrowDown,
   Plus,
   TrendingUp,
+  ChevronRight,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
@@ -148,15 +149,16 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="md:col-span-2">
           <CardContent className="p-0">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+            <div className="flex items-center justify-between pl-6 pr-3 py-5 border-b border-gray-200">
               <h2 className="text-sm font-semibold uppercase text-gray-400 tracking-wide">
                 Transações recentes
               </h2>
               <Link
                 to="/transacoes"
-                className="text-sm font-medium text-brand-base hover:underline flex items-center gap-0.5"
+                className="text-sm font-medium text-brand-base flex items-center gap-1"
               >
-                Ver todas &gt;
+                Ver todas
+                <ChevronRight size={20} />
               </Link>
             </div>
             <div className="divide-y divide-gray-200">
@@ -197,7 +199,7 @@ export default function Dashboard() {
                     <div className="flex justify-center">
                       <span
                         className={cn(
-                          "inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium w-fit",
+                          "inline-flex px-3 py-1 rounded-full text-sm font-medium w-fit",
                           getCategoryColorClasses(t.category?.color ?? null),
                         )}
                       >
