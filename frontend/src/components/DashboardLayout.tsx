@@ -35,9 +35,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 <Link
                   key={path}
                   to={path}
-                  className={`text-sm font-semibold ${
+                  className={`text-sm ${
                     location.pathname === path
-                      ? "text-brand-base"
+                      ? "text-brand-base font-semibold"
                       : "text-gray-600 hover:text-gray-900"
                   }`}
                 >

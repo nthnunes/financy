@@ -254,7 +254,7 @@ export default function Dashboard() {
                       <span className="text-gray-500">
                         {c.count} {c.count === 1 ? "item" : "itens"}
                       </span>
-                      <span className="font-medium text-gray-800 w-[5.5rem] text-right">
+                      <span className="font-semibold text-gray-800 w-[5.5rem] text-right">
                         R${" "}
                         {c.total.toLocaleString("pt-BR", {
                           minimumFractionDigits: 2,
