@@ -211,11 +211,11 @@ export default function Dashboard() {
                 ))
               )}
             </div>
-            <div className="px-6 py-4 border-t border-gray-200 flex justify-center">
+            <div className="py-5 border-t border-gray-200 flex justify-center">
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-1.5 text-brand-base font-medium text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-brand-base/20 rounded"
+                className="inline-flex items-center gap-1 text-brand-base font-medium text-sm"
               >
                 <Plus size={18} />
                 Nova transação
@@ -246,7 +246,7 @@ export default function Dashboard() {
                 categoryTotals.map((c) => (
                   <div
                     key={c.id}
-                    className="flex items-center justify-between px-6 py-4 hover:bg-gray-100"
+                    className="flex items-center justify-between px-6 py-4"
                   >
                     <CategoryTag color={c.color ?? null}>{c.name}</CategoryTag>
                     <span className="text-sm text-gray-500">
