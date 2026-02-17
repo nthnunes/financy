@@ -238,28 +238,30 @@ export default function Dashboard() {
                 <ChevronRight size={20} />
               </Link>
             </div>
-            <div className="divide-y divide-gray-200">
+            <div className="flex flex-col gap-y-5 p-6">
               {categories.length === 0 ? (
-                <div className="p-6 text-center text-gray-500">
+                <div className="text-center text-gray-500">
                   Nenhuma categoria ainda.
                 </div>
               ) : (
                 categoryTotals.map((c) => (
                   <div
                     key={c.id}
-                    className="flex items-center justify-between px-6 py-4"
+                    className="flex items-center justify-between text-sm"
                   >
                     <CategoryTag color={c.color ?? null}>{c.name}</CategoryTag>
-                    <span className="text-sm text-gray-500">
-                      {c.count} {c.count === 1 ? "item" : "itens"}
-                    </span>
-                    <span className="font-medium text-gray-800">
-                      R${" "}
-                      {c.total.toLocaleString("pt-BR", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                    </span>
+                    <div className="flex items-center justify-end gap-4 min-w-0 shrink-0">
+                      <span className="text-gray-500">
+                        {c.count} {c.count === 1 ? "item" : "itens"}
+                      </span>
+                      <span className="font-medium text-gray-800 w-[5.5rem] text-right">
+                        R${" "}
+                        {c.total.toLocaleString("pt-BR", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </span>
+                    </div>
                   </div>
                 ))
               )}
