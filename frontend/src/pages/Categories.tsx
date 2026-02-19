@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Plus, Pencil, Trash2, Tag, TrendingUp } from "lucide-react";
+import { Plus, Pencil, Trash, Tag, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { IconButton } from "@/components/ui/IconButton";
 import { CategoryFormDialog } from "@/components/CategoryFormDialog";
 import { useCategories, type Category } from "@/hooks/useCategories";
 import { useDeleteCategory } from "@/hooks/useCategories";
@@ -97,27 +98,23 @@ export default function Categories() {
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <CategoryIcon icon={c.icon} color={c.color} />
-                    <div className="flex gap-1">
-                      <button
-                        type="button"
+                    <div className="flex gap-2">
+                      <IconButton
+                        icon={Trash}
+                        variant="danger"
                         onClick={() => {
                           if (window.confirm("Excluir esta categoria?")) {
                             deleteCategory.mutate(c.id);
                           }
                         }}
-                        className="p-2 rounded-full border border-gray-200 text-danger hover:bg-danger/10 hover:border-danger transition-colors"
                         aria-label="Excluir"
-                      >
-                        <Trash2 size={18} />
-                      </button>
-                      <button
-                        type="button"
+                      />
+                      <IconButton
+                        icon={Pencil}
+                        variant="default"
                         onClick={() => openEdit(c)}
-                        className="p-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors"
                         aria-label="Editar"
-                      >
-                        <Pencil size={18} />
-                      </button>
+                      />
                     </div>
                   </div>
                   <h3 className="font-bold text-gray-800 text-lg">{c.name}</h3>
