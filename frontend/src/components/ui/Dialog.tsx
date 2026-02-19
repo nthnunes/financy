@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { IconButton } from "@/components/ui/IconButton";
 
 interface DialogProps {
   open: boolean;
@@ -59,14 +60,7 @@ export function Dialog({
               <p className="text-sm text-gray-500 mt-0.5">{subtitle}</p>
             )}
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-            aria-label="Fechar"
-          >
-            <X size={24} />
-          </button>
+          <IconButton icon={X} onClick={onClose} aria-label="Fechar" />
         </div>
         <div className="p-6">{children}</div>
       </div>
