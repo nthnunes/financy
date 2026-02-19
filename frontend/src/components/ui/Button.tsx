@@ -28,9 +28,9 @@ export function Button({
         variant === "primary" &&
           "bg-brand-base text-white hover:bg-brand-dark border border-transparent",
         variant === "outline" &&
-          "bg-white text-gray-700 border border-gray-300",
-        size === "sm" && "px-3 py-1.5 text-sm",
-        size === "md" && "px-4 py-2.5 text-sm",
+          "bg-white text-gray-700 hover:bg-gray-200 border border-gray-300",
+        size === "sm" && "px-3 py-2 text-sm",
+        size === "md" && "px-4 py-3",
         className,
       )}
       {...props}
