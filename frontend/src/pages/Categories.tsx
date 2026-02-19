@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Pencil, Trash, Tag, TrendingUp } from "lucide-react";
+import { Plus, Pencil, Trash, Tag, ArrowUpDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
@@ -85,14 +85,17 @@ export default function Categories() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card>
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="flex items-center justify-center text-gray-600 shrink-0">
-              <Tag size={24} />
-            </div>
-            <div className="min-w-0">
-              <p className="text-2xl font-bold text-gray-800">
+          <CardContent className="flex flex-col gap-2 p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-6 shrink-0 flex items-center justify-center text-gray-700">
+                <Tag size={24} />
+              </div>
+              <p className="text-[28px] font-bold text-gray-800">
                 {categories.length}
               </p>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-6 shrink-0" aria-hidden />
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Total de categorias
               </p>
@@ -100,14 +103,17 @@ export default function Categories() {
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="flex items-center justify-center text-gray-600 shrink-0">
-              <TrendingUp size={24} />
-            </div>
-            <div className="min-w-0">
-              <p className="text-2xl font-bold text-gray-800">
+          <CardContent className="flex flex-col gap-2 p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-6 shrink-0 flex items-center justify-center text-purple-base">
+                <ArrowUpDown size={24} />
+              </div>
+              <p className="text-[28px] font-bold text-gray-800">
                 {totalTransactions}
               </p>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-6 shrink-0" aria-hidden />
               <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                 Total de transações
               </p>
@@ -115,20 +121,23 @@ export default function Categories() {
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="flex items-center gap-4 p-6">
+          <CardContent className="flex flex-col gap-2 p-6">
             {mostUsedCategory ? (
               <>
-                <div className="flex items-center justify-center shrink-0">
-                  {getCategoryIcon(
-                    mostUsedCategory.icon,
-                    24,
-                    getCategoryIconColorClass(mostUsedCategory.color ?? null),
-                  )}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-2xl font-bold text-gray-800 truncate">
+                <div className="flex items-center gap-4">
+                  <div className="w-6 shrink-0 flex items-center justify-center">
+                    {getCategoryIcon(
+                      mostUsedCategory.icon,
+                      24,
+                      getCategoryIconColorClass(mostUsedCategory.color ?? null),
+                    )}
+                  </div>
+                  <p className="text-[28px] font-bold text-gray-800 truncate min-w-0">
                     {mostUsedCategory.name}
                   </p>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-6 shrink-0" aria-hidden />
                   <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                     Categoria mais utilizada
                   </p>
@@ -136,11 +145,14 @@ export default function Categories() {
               </>
             ) : (
               <>
-                <div className="flex items-center justify-center text-gray-400 shrink-0">
-                  —
+                <div className="flex items-center gap-4">
+                  <div className="w-6 shrink-0 flex items-center justify-center text-gray-400">
+                    —
+                  </div>
+                  <p className="text-[28px] font-bold text-gray-800">—</p>
                 </div>
-                <div className="min-w-0">
-                  <p className="text-2xl font-bold text-gray-800">—</p>
+                <div className="flex gap-4">
+                  <div className="w-6 shrink-0" aria-hidden />
                   <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
                     Categoria mais utilizada
                   </p>
