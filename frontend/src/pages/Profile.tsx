@@ -34,7 +34,7 @@ export default function Profile() {
             <Input
               label="Nome completo"
               value={user?.name ?? ""}
-              icon={<User size={20} />}
+              icon={User}
               readOnly
               className="bg-gray-100 cursor-default"
             />
@@ -42,7 +42,7 @@ export default function Profile() {
               label="E-mail"
               type="email"
               value={user?.email ?? ""}
-              icon={<Mail size={20} />}
+              icon={Mail}
               disabled
               className="bg-gray-100 cursor-not-allowed"
             />

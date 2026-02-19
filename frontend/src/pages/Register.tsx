@@ -50,7 +50,7 @@ export default function Register() {
               label="Nome completo"
               type="text"
               placeholder="Seu nome completo"
-              icon={<User size={16} />}
+              icon={User}
               error={errors.name?.message}
               {...register("name")}
             />
@@ -58,7 +58,7 @@ export default function Register() {
               label="E-mail"
               type="email"
               placeholder="mail@exemplo.com"
-              icon={<Mail size={16} />}
+              icon={Mail}
               error={errors.email?.message}
               {...register("email")}
             />
@@ -67,7 +67,7 @@ export default function Register() {
                 label="Senha"
                 type={showPassword ? "text" : "password"}
                 placeholder="Digite sua senha"
-                icon={<Lock size={16} />}
+                icon={Lock}
                 rightIcon={
                   <button
                     type="button"

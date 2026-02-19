@@ -159,7 +159,7 @@ export default function Transactions() {
                   setSearch(e.target.value);
                   setPage(1);
                 }}
-                icon={<Search size={20} />}
+                icon={Search}
               />
             </div>
             <div>

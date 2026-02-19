@@ -47,7 +47,7 @@ export default function Login() {
               label="E-mail"
               type="email"
               placeholder="mail@exemplo.com"
-              icon={<Mail size={16} />}
+              icon={Mail}
               error={errors.email?.message}
               {...register("email")}
             />
@@ -55,7 +55,7 @@ export default function Login() {
               label="Senha"
               type={showPassword ? "text" : "password"}
               placeholder="Digite sua senha"
-              icon={<Lock size={16} />}
+              icon={Lock}
               rightIcon={
                 <button
                   type="button"
