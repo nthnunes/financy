@@ -76,6 +76,7 @@ export function TransactionFormDialog({
   });
 
   const type = watch("type");
+  const categoryId = watch("categoryId");
 
   const onSubmit = (data: FormData) => {
     const payload = {
@@ -214,8 +215,11 @@ export function TransactionFormDialog({
           label="Categoria"
           placeholder="Selecione"
           options={categoryOptions}
+          value={categoryId ?? ""}
+          onChange={(e) => setValue("categoryId", e.target.value, { shouldValidate: true })}
+          onBlur={register("categoryId").onBlur}
+          name={register("categoryId").name}
           error={errors.categoryId?.message}
-          {...register("categoryId")}
         />
 
         <Button
