@@ -233,10 +233,10 @@ export function TransactionFormDialog({
         </Button>
         {(createTransaction.isError || updateTransaction.isError) && (
           <p className="text-sm text-red-500 text-center">
-            {(createTransaction.error || updateTransaction.error) instanceof
-            Error
-              ? (createTransaction.error || updateTransaction.error).message
-              : "Erro ao salvar"}
+            {(() => {
+              const err = createTransaction.error || updateTransaction.error;
+              return err instanceof Error ? err.message : "Erro ao salvar";
+            })()}
           </p>
         )}
       </form>
