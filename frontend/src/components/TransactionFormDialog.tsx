@@ -31,14 +31,24 @@ interface TransactionFormDialogProps {
   edit?: Transaction | null;
 }
 
-function formatAmountForInput(value: number) {
-  if (value === 0) return "";
-  return value.toFixed(2).replace(".", ",");
+const MAX_AMOUNT_CENTS = 99999999; // 999.999,99
+
+function formatAmountForInput(value: number): string {
+  return (
+    "R$ " +
+    value.toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+  );
 }
 
-function parseAmountFromInput(str: string): number {
-  const cleaned = str.replace(/\./g, "").replace(",", ".");
-  return parseFloat(cleaned) || 0;
+function amountToCents(amount: number): number {
+  return Math.round(amount * 100);
+}
+
+function centsToAmount(cents: number): number {
+  return cents / 100;
 }
 
 export function TransactionFormDialog({
@@ -201,11 +211,28 @@ export function TransactionFormDialog({
               placeholder="R$ 0,00"
               error={errors.amount?.message}
               value={formatAmountForInput(watch("amount"))}
-              onChange={(e) =>
-                setValue("amount", parseAmountFromInput(e.target.value), {
-                  shouldValidate: true,
-                })
-              }
+              readOnly
+              onKeyDown={(e) => {
+                const amount = watch("amount");
+                const currentCents = amountToCents(amount);
+                if (e.key >= "0" && e.key <= "9") {
+                  e.preventDefault();
+                  const digit = parseInt(e.key, 10);
+                  const newCents = Math.min(
+                    currentCents * 10 + digit,
+                    MAX_AMOUNT_CENTS,
+                  );
+                  setValue("amount", centsToAmount(newCents), {
+                    shouldValidate: true,
+                  });
+                } else if (e.key === "Backspace") {
+                  e.preventDefault();
+                  const newCents = Math.floor(currentCents / 10);
+                  setValue("amount", centsToAmount(newCents), {
+                    shouldValidate: true,
+                  });
+                }
+              }}
             />
           </div>
 
