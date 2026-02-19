@@ -138,7 +138,7 @@ export function TransactionFormDialog({
       title={edit ? "Editar transação" : "Nova transação"}
       subtitle="Registre sua despesa ou receita"
     >
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
         <div className="flex border border-gray-200 rounded-xl p-2">
           <Button
             type="button"
@@ -180,46 +180,48 @@ export function TransactionFormDialog({
 
         <input type="hidden" {...register("type")} />
 
-        <Input
-          label="Descrição"
-          placeholder="Ex. Almoço no restaurante"
-          error={errors.title?.message}
-          {...register("title")}
-        />
-
-        <div className="grid grid-cols-2 gap-4">
+        <div className="flex flex-col gap-4">
           <Input
-            label="Data"
-            placeholder="Selecione"
-            type="date"
-            error={errors.date?.message}
-            {...register("date")}
+            label="Descrição"
+            placeholder="Ex. Almoço no restaurante"
+            error={errors.title?.message}
+            {...register("title")}
           />
-          <Input
-            label="Valor"
-            placeholder="R$ 0,00"
-            error={errors.amount?.message}
-            value={formatAmountForInput(watch("amount"))}
+
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              label="Data"
+              placeholder="Selecione"
+              type="date"
+              error={errors.date?.message}
+              {...register("date")}
+            />
+            <Input
+              label="Valor"
+              placeholder="R$ 0,00"
+              error={errors.amount?.message}
+              value={formatAmountForInput(watch("amount"))}
+              onChange={(e) =>
+                setValue("amount", parseAmountFromInput(e.target.value), {
+                  shouldValidate: true,
+                })
+              }
+            />
+          </div>
+
+          <Select
+            label="Categoria"
+            placeholder="Selecione"
+            options={categoryOptions}
+            value={categoryId ?? ""}
             onChange={(e) =>
-              setValue("amount", parseAmountFromInput(e.target.value), {
-                shouldValidate: true,
-              })
+              setValue("categoryId", e.target.value, { shouldValidate: true })
             }
+            onBlur={register("categoryId").onBlur}
+            name={register("categoryId").name}
+            error={errors.categoryId?.message}
           />
         </div>
-
-        <Select
-          label="Categoria"
-          placeholder="Selecione"
-          options={categoryOptions}
-          value={categoryId ?? ""}
-          onChange={(e) =>
-            setValue("categoryId", e.target.value, { shouldValidate: true })
-          }
-          onBlur={register("categoryId").onBlur}
-          name={register("categoryId").name}
-          error={errors.categoryId?.message}
-        />
 
         <Button
           type="submit"
