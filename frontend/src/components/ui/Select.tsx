@@ -111,7 +111,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             disabled={disabled}
             onClick={() => setIsOpen((prev) => !prev)}
             className={cn(
-              "w-full flex items-center gap-3 rounded-lg border border-gray-300 bg-white py-2.5 pl-4 pr-10 text-left text-gray-900 transition-colors",
+              "w-full flex items-center gap-3 rounded-lg border border-gray-300 bg-white px-3 py-3.5 text-left text-gray-900 transition-colors",
               error && "border-red-500 focus:border-red-500 focus:ring-red-500",
               disabled && "cursor-not-allowed opacity-60",
               className,

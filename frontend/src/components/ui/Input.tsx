@@ -83,15 +83,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       !isFilled && !isActive && !isError && !isDisabled && "text-gray-400",
     );
 
-    const inputClassName = cn(
-      "w-full rounded-lg border py-3.5 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-0 transition-colors",
-      Icon && "pl-10",
-      rightIcon && "pr-10",
-      !Icon && !rightIcon && "px-4",
-      isDisabled &&
-        "border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed placeholder-gray-400",
+    const wrapperClassName = cn(
+      "flex items-center gap-3 rounded-lg border px-3 py-3.5 transition-colors",
+      isDisabled && "border-gray-300 bg-gray-100 cursor-not-allowed",
       !isDisabled && "bg-white",
+      isError && "border-red-500",
       !isError && "border-gray-300",
+    );
+
+    const inputClassName = cn(
+      "min-w-0 flex-1 border-0 bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-0",
+      isDisabled && "cursor-not-allowed text-gray-500 placeholder-gray-400",
+      className,
     );
 
     const displayHelper = error ?? helperText;
@@ -104,27 +107,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </label>
         )}
-        <div className="relative">
+        <div className={wrapperClassName}>
           {Icon && (
-            <div className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center justify-center">
-              <Icon size={INPUT_ICON_SIZE} className={iconClassName} />
-            </div>
+            <Icon
+              size={INPUT_ICON_SIZE}
+              className={cn("shrink-0", iconClassName)}
+            />
           )}
           <input
             {...props}
             ref={ref}
             value={isControlled ? value : undefined}
             defaultValue={isControlled ? undefined : defaultValue}
-            className={cn(inputClassName, className)}
+            className={inputClassName}
             disabled={disabled}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
           />
           {rightIcon && (
-            <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center justify-center [&>svg]:size-5">
-              {rightIcon}
-            </div>
+            <div className="shrink-0 [&>svg]:size-4">{rightIcon}</div>
           )}
         </div>
         {displayHelper && (
