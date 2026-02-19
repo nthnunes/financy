@@ -70,11 +70,11 @@ export default function Categories() {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-start mb-6">
+    <div className="flex flex-col gap-8">
+      <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Categorias</h1>
-          <p className="text-gray-500 mt-1">
+          <p className="text-gray-500 mt-0.5">
             Organize suas transações por categorias
           </p>
         </div>
@@ -83,7 +83,7 @@ export default function Categories() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
             <div className="flex items-center justify-center text-gray-600 shrink-0">
