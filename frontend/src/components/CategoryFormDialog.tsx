@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Dialog } from "@/components/ui/Dialog";
 import { Button } from "@/components/ui/Button";
+import { IconButton } from "@/components/ui/IconButton";
 import { Input } from "@/components/ui/Input";
 import {
   useCreateCategory,
@@ -138,23 +139,18 @@ export function CategoryFormDialog({
             {CATEGORY_ICON_OPTIONS.map((iconKey) => {
               const IconComponent = getCategoryIconComponent(iconKey);
               const isSelected = selectedIcon === iconKey;
+              if (!IconComponent) return null;
               return (
-                <button
+                <IconButton
                   key={iconKey}
-                  type="button"
+                  icon={IconComponent}
                   onClick={() => setValue("icon", iconKey)}
-                  className={cn(
-                    "w-10 h-10 rounded-lg flex items-center justify-center border transition-colors bg-white",
-                    isSelected
-                      ? "border-2 border-brand-base"
-                      : "border border-gray-200 hover:border-gray-300",
-                  )}
                   aria-label={`Ícone ${iconKey}`}
-                >
-                  {IconComponent ? (
-                    <IconComponent size={20} className="text-gray-600" />
-                  ) : null}
-                </button>
+                  className={cn(
+                    "w-10 h-10 flex items-center justify-center hover:bg-gray-100",
+                    isSelected ? "border-brand-base" : "",
+                  )}
+                />
               );
             })}
           </div>
