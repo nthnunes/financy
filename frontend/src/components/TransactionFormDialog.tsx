@@ -138,7 +138,7 @@ export function TransactionFormDialog({
       title={edit ? "Editar transação" : "Nova transação"}
       subtitle="Registre sua despesa ou receita"
     >
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div className="flex border border-gray-200 rounded-xl p-2">
           <Button
             type="button"
