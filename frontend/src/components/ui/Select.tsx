@@ -125,7 +125,12 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                 {selectedOption.icon}
               </span>
             )}
-            <span className="min-w-0 flex-1 truncate">
+            <span
+              className={cn(
+                "min-w-0 flex-1 truncate",
+                !selectedOption && "text-gray-400",
+              )}
+            >
               {selectedOption
                 ? selectedOption.label
                 : (placeholder ?? "Selecione")}
@@ -153,26 +158,6 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                       : undefined,
                 }}
               >
-                {placeholder && (
-                  <button
-                    type="button"
-                    role="option"
-                    aria-selected={!value}
-                    onClick={() => handleSelect("")}
-                    className={cn(
-                      "w-full flex items-center justify-between gap-2 py-2 text-left text-gray-700",
-                      !value && "font-semibold bg-gray-50",
-                    )}
-                  >
-                    <span>{placeholder}</span>
-                    {!value && (
-                      <Check
-                        size={20}
-                        className="shrink-0 text-feedback-success"
-                      />
-                    )}
-                  </button>
-                )}
                 {options.map((opt) => {
                   const isSelected = opt.value === value;
                   return (
