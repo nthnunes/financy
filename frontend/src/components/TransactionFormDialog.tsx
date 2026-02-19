@@ -139,7 +139,7 @@ export function TransactionFormDialog({
       subtitle="Registre sua despesa ou receita"
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex gap-2">
+        <div className="flex border border-gray-200 rounded-xl p-2">
           <Button
             type="button"
             variant="outline"
