@@ -225,10 +225,16 @@ export default function Transactions() {
                   <tr key={t.id} className="border-b border-gray-200">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-4">
-                        <CategoryIcon
-                          icon={t.category!.icon}
-                          color={t.category!.color}
-                        />
+                        {t.category ? (
+                          <CategoryIcon
+                            icon={t.category.icon}
+                            color={t.category.color}
+                          />
+                        ) : (
+                          <span className="flex shrink-0 items-center justify-center rounded-lg w-10 h-10 bg-gray-100 text-gray-400">
+                            —
+                          </span>
+                        )}
                         <span className="font-medium text-gray-800">
                           {t.title}
                         </span>
