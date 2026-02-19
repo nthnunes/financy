@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 import { Dialog } from "@/components/ui/Dialog";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -140,32 +140,42 @@ export function TransactionFormDialog({
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex gap-2">
-          <button
+          <Button
             type="button"
-            onClick={() => setValue("type", "expense")}
+            variant="outline"
+            size="md"
+            icon={CircleArrowDown}
+            iconClassName={cn(
+              type === "expense" ? "text-red-base" : "text-gray-400",
+            )}
             className={cn(
-              "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border-2 font-medium transition-colors",
+              "flex-1 border-2 transition-colors hover:bg-gray-100",
               type === "expense"
-                ? "border-red-500 text-red-600 bg-red-50"
-                : "border-gray-200 text-gray-600 hover:border-gray-300",
+                ? "border-red-base text-gray-800"
+                : "border-transparent text-gray-400",
             )}
+            onClick={() => setValue("type", "expense")}
           >
-            <ArrowDown size={20} strokeWidth={2.5} />
             Despesa
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            onClick={() => setValue("type", "income")}
-            className={cn(
-              "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border-2 font-medium transition-colors",
-              type === "income"
-                ? "border-primary text-primary bg-green-50"
-                : "border-gray-200 text-gray-600 hover:border-gray-300",
+            variant="outline"
+            size="md"
+            icon={CircleArrowUp}
+            iconClassName={cn(
+              type === "income" ? "text-brand-base" : "text-gray-400",
             )}
+            className={cn(
+              "flex-1 border-2 transition-colors hover:bg-gray-100",
+              type === "income"
+                ? "border-brand-base text-gray-800"
+                : "border-transparent text-gray-400",
+            )}
+            onClick={() => setValue("type", "income")}
           >
-            <ArrowUp size={20} strokeWidth={2.5} />
             Receita
-          </button>
+          </Button>
         </div>
 
         <input type="hidden" {...register("type")} />
@@ -203,7 +213,9 @@ export function TransactionFormDialog({
           placeholder="Selecione"
           options={categoryOptions}
           value={categoryId ?? ""}
-          onChange={(e) => setValue("categoryId", e.target.value, { shouldValidate: true })}
+          onChange={(e) =>
+            setValue("categoryId", e.target.value, { shouldValidate: true })
+          }
           onBlur={register("categoryId").onBlur}
           name={register("categoryId").name}
           error={errors.categoryId?.message}
