@@ -171,15 +171,13 @@ export function CategoryFormDialog({
                   type="button"
                   onClick={() => setValue("color", opt.value)}
                   className={cn(
-                    "flex-1 min-w-0 rounded-lg border-2 p-1 transition-colors",
-                    isSelected
-                      ? "border-brand-base"
-                      : "border-gray-200 hover:border-gray-300",
+                    "flex-1 rounded-lg border p-1 hover:bg-gray-100",
+                    isSelected ? "border-brand-base" : "border-gray-200",
                   )}
                   aria-label={`Cor ${opt.value}`}
                 >
                   <div
-                    className={cn("h-6 w-full rounded-[4px]", opt.swatchClass)}
+                    className={cn("h-5 w-full rounded-[4px]", opt.swatchClass)}
                   />
                 </button>
               );

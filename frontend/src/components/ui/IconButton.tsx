@@ -19,7 +19,7 @@ export function IconButton({
     <button
       type="button"
       className={cn(
-        "p-2 rounded-lg bg-white border border-gray-300 hover:bg-gray-200 transition-colors",
+        "p-2 rounded-lg bg-white border border-gray-300 hover:bg-gray-200",
         variant === "default" && "text-gray-700",
         variant === "danger" && "text-danger",
         className,
