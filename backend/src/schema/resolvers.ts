@@ -129,6 +129,19 @@ export const resolvers = {
       const { password: _pw, ...safe } = user;
       return { token, user: formatUser(safe) };
     },
+    updateUser: async (
+      _: unknown,
+      { input }: { input: { name: string } },
+      context: Context,
+    ) => {
+      const userId = requireAuth(context);
+      const user = await context.prisma.user.update({
+        where: { id: userId },
+        data: { name: input.name.trim() },
+        select: { id: true, name: true, email: true, createdAt: true },
+      });
+      return formatUser(user);
+    },
     createCategory: async (
       _: unknown,
       {

@@ -1,11 +1,19 @@
+import { useState, useEffect } from "react";
 import { User, Mail, LogOut } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/contexts/AuthContext";
+import { useUpdateUser } from "@/hooks/useAuth";
 
 export default function Profile() {
   const { user, logout } = useAuth();
+  const updateUser = useUpdateUser();
+  const [name, setName] = useState(user?.name ?? "");
+
+  useEffect(() => {
+    setName(user?.name ?? "");
+  }, [user?.name]);
 
   const initials =
     user?.name
@@ -30,10 +38,9 @@ export default function Profile() {
           <div className="space-y-4">
             <Input
               label="Nome completo"
-              value={user?.name ?? ""}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               icon={User}
-              readOnly
-              className="bg-gray-100 cursor-default"
             />
             <Input
               label="E-mail"
@@ -42,10 +49,8 @@ export default function Profile() {
               icon={Mail}
               disabled
               className="bg-gray-100 cursor-not-allowed"
+              helperText="O e-mail não pode ser alterado"
             />
-            <p className="text-xs text-gray-500">
-              O e-mail não pode ser alterado
-            </p>
           </div>
 
           <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
@@ -54,9 +59,12 @@ export default function Profile() {
               variant="primary"
               size="md"
               className="w-full"
-              onClick={() => {}}
+              disabled={
+                updateUser.isPending || name.trim() === (user?.name ?? "")
+              }
+              onClick={() => updateUser.mutate({ name: name.trim() })}
             >
-              Salvar alterações
+              {updateUser.isPending ? "Salvando..." : "Salvar alterações"}
             </Button>
             <Button
               type="button"

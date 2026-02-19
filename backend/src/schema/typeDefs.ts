@@ -42,6 +42,10 @@ export const typeDefs = `#graphql
     password: String!
   }
 
+  input UpdateUserInput {
+    name: String!
+  }
+
   input CreateCategoryInput {
     name: String!
     description: String
@@ -81,6 +85,7 @@ export const typeDefs = `#graphql
   type Mutation {
     register(input: RegisterInput!): Token!
     login(input: LoginInput!): Token!
+    updateUser(input: UpdateUserInput!): User!
     createCategory(input: CreateCategoryInput!): Category!
     updateCategory(id: ID!, input: UpdateCategoryInput!): Category!
     deleteCategory(id: ID!): Boolean!
