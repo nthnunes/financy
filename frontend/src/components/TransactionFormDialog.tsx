@@ -149,7 +149,7 @@ export function TransactionFormDialog({
               type === "expense" ? "text-red-base" : "text-gray-400",
             )}
             className={cn(
-              "flex-1 border-2 transition-colors hover:bg-gray-100",
+              "flex-1 transition-colors hover:bg-gray-100",
               type === "expense"
                 ? "border-red-base text-gray-800"
                 : "border-transparent text-gray-400",
@@ -167,7 +167,7 @@ export function TransactionFormDialog({
               type === "income" ? "text-brand-base" : "text-gray-400",
             )}
             className={cn(
-              "flex-1 border-2 transition-colors hover:bg-gray-100",
+              "flex-1 transition-colors hover:bg-gray-100",
               type === "income"
                 ? "border-brand-base text-gray-800"
                 : "border-transparent text-gray-400",
