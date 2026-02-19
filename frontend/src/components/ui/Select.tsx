@@ -1,52 +1,213 @@
-import { forwardRef } from "react";
-import { ChevronDown } from "lucide-react";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { ChevronDown, ChevronUp, Check } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-interface SelectOption {
+export interface SelectOption {
   value: string;
   label: string;
+  icon?: React.ReactNode;
 }
 
-interface SelectProps extends Omit<
-  React.SelectHTMLAttributes<HTMLSelectElement>,
-  "children"
-> {
+interface SelectProps {
   label?: string;
   error?: string;
   options: SelectOption[];
   placeholder?: string;
   className?: string;
+  value?: string;
+  defaultValue?: string;
+  name?: string;
+  onChange?: (e: { target: { value: string } }) => void;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  disabled?: boolean;
 }
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, error, options, placeholder, className, ...props }, ref) => {
+export const Select = forwardRef<HTMLInputElement, SelectProps>(
+  (
+    {
+      label,
+      error,
+      options,
+      placeholder,
+      className,
+      value: controlledValue,
+      defaultValue,
+      name,
+      onChange,
+      onBlur,
+      disabled,
+    },
+    ref,
+  ) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [uncontrolledValue, setUncontrolledValue] = useState(
+      defaultValue ?? "",
+    );
+    const [dropdownRect, setDropdownRect] = useState<{
+      top: number;
+      left: number;
+      width: number;
+    } | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLButtonElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const isControlled = controlledValue !== undefined;
+    const value = isControlled ? controlledValue : uncontrolledValue;
+    const selectedOption = options.find((opt) => opt.value === value);
+
+    useEffect(() => {
+      if (!isOpen) {
+        setDropdownRect(null);
+        return;
+      }
+      const trigger = triggerRef.current;
+      if (trigger) {
+        const rect = trigger.getBoundingClientRect();
+        setDropdownRect({
+          top: rect.bottom + 8, // gap-2 entre select e dropdown
+          left: rect.left,
+          width: rect.width,
+        });
+      }
+      const handleClickOutside = (e: MouseEvent) => {
+        const target = e.target as Node;
+        const inTrigger = containerRef.current?.contains(target);
+        const inDropdown = dropdownRef.current?.contains(target);
+        if (!inTrigger && !inDropdown) setIsOpen(false);
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }, [isOpen]);
+
+    const handleSelect = (optionValue: string) => {
+      if (!isControlled) setUncontrolledValue(optionValue);
+      onChange?.({ target: { value: optionValue } });
+      setIsOpen(false);
+    };
+
     return (
-      <div className="w-full">
+      <div className="w-full" ref={containerRef}>
         {label && (
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
             {label}
           </label>
         )}
+        <input
+          type="hidden"
+          ref={ref}
+          name={name}
+          value={value}
+          onBlur={onBlur}
+          readOnly
+          aria-hidden
+        />
         <div className="relative">
-          <select
-            ref={ref}
+          <button
+            ref={triggerRef}
+            type="button"
+            disabled={disabled}
+            onClick={() => setIsOpen((prev) => !prev)}
             className={cn(
-              "w-full rounded-lg border border-gray-300 bg-white py-2.5 pl-4 pr-10 text-gray-900 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary appearance-none",
+              "w-full flex items-center gap-3 rounded-lg border border-gray-300 bg-white py-2.5 pl-4 pr-10 text-left text-gray-900 transition-colors",
               error && "border-red-500 focus:border-red-500 focus:ring-red-500",
+              disabled && "cursor-not-allowed opacity-60",
               className,
             )}
-            {...props}
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-label={label ?? "Seleção"}
           >
-            {placeholder && <option value="">{placeholder}</option>}
-            {options.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-          <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
-            <ChevronDown size={20} strokeWidth={2} />
-          </div>
+            {selectedOption?.icon && (
+              <span className="flex shrink-0 text-gray-400">
+                {selectedOption.icon}
+              </span>
+            )}
+            <span className="flex-1 truncate">
+              {selectedOption
+                ? selectedOption.label
+                : (placeholder ?? "Selecione")}
+            </span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
+              {isOpen ? (
+                <ChevronUp size={20} strokeWidth={2} />
+              ) : (
+                <ChevronDown size={20} strokeWidth={2} />
+              )}
+            </span>
+          </button>
+
+          {isOpen &&
+            dropdownRect &&
+            typeof document !== "undefined" &&
+            createPortal(
+              <div
+                ref={dropdownRef}
+                role="listbox"
+                className="fixed z-[100] flex flex-col gap-4 rounded-lg border border-gray-300 bg-white px-3 py-3.5"
+                style={{
+                  top: dropdownRect.top,
+                  left: dropdownRect.left,
+                  width: dropdownRect.width,
+                }}
+              >
+                {placeholder && (
+                  <button
+                    type="button"
+                    role="option"
+                    aria-selected={!value}
+                    onClick={() => handleSelect("")}
+                    className={cn(
+                      "w-full flex items-center justify-between gap-2 py-2 text-left text-gray-700",
+                      !value && "font-semibold bg-gray-50",
+                    )}
+                  >
+                    <span>{placeholder}</span>
+                    {!value && (
+                      <Check
+                        size={20}
+                        className="shrink-0 text-feedback-success"
+                      />
+                    )}
+                  </button>
+                )}
+                {options.map((opt) => {
+                  const isSelected = opt.value === value;
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      role="option"
+                      aria-selected={isSelected}
+                      onClick={() => handleSelect(opt.value)}
+                      className={cn(
+                        "w-full flex items-center justify-between gap-2 text-left text-gray-800",
+                        isSelected && "font-medium",
+                      )}
+                    >
+                      <span className="flex items-center gap-2 truncate">
+                        {opt.icon && (
+                          <span className="flex shrink-0 text-gray-400">
+                            {opt.icon}
+                          </span>
+                        )}
+                        {opt.label}
+                      </span>
+                      {isSelected && (
+                        <Check
+                          size={18}
+                          className="shrink-0 text-green-600"
+                          strokeWidth={2.5}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>,
+              document.body,
+            )}
         </div>
         {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
       </div>
