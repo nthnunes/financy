@@ -48,15 +48,24 @@ export default function Profile() {
             </p>
           </div>
 
-          <div className="mt-6 pt-6 border-t border-gray-200">
+          <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
+            <Button
+              type="button"
+              variant="primary"
+              size="md"
+              className="w-full"
+              onClick={() => {}}
+            >
+              Salvar alterações
+            </Button>
             <Button
               type="button"
               variant="outline"
               size="md"
-              className="w-full border-danger text-danger hover:bg-danger/10 hover:border-danger"
+              icon={LogOut}
+              className="w-full"
               onClick={logout}
             >
-              <LogOut size={20} className="mr-2" />
               Sair da conta
             </Button>
           </div>
