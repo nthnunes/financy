@@ -115,73 +115,78 @@ export function CategoryFormDialog({
       title={edit ? "Editar categoria" : "Nova categoria"}
       subtitle="Organize suas transações com categorias"
     >
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <Input
-          label="Título"
-          placeholder="Ex. Alimentação"
-          error={errors.name?.message}
-          {...register("name")}
-        />
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
+          <Input
+            label="Título"
+            placeholder="Ex. Alimentação"
+            error={errors.name?.message}
+            {...register("name")}
+          />
 
-        <Input
-          label="Descrição"
-          placeholder="Descrição da categoria"
-          helperText="Opcional"
-          error={errors.description?.message}
-          {...register("description")}
-        />
+          <Input
+            label="Descrição"
+            placeholder="Descrição da categoria"
+            helperText="Opcional"
+            error={errors.description?.message}
+            {...register("description")}
+          />
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Ícone
-          </label>
-          <div className="grid grid-cols-8 gap-2">
-            {CATEGORY_ICON_OPTIONS.map((iconKey) => {
-              const IconComponent = getCategoryIconComponent(iconKey);
-              const isSelected = selectedIcon === iconKey;
-              if (!IconComponent) return null;
-              return (
-                <IconButton
-                  key={iconKey}
-                  icon={IconComponent}
-                  onClick={() => setValue("icon", iconKey)}
-                  aria-label={`Ícone ${iconKey}`}
-                  className={cn(
-                    "w-10 h-10 flex items-center justify-center hover:bg-gray-100",
-                    isSelected
-                      ? "border-brand-base text-gray-600"
-                      : "text-gray-500",
-                  )}
-                />
-              );
-            })}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Cor
-          </label>
-          <div className="flex w-full gap-2">
-            {CATEGORY_COLOR_OPTIONS.map((opt) => {
-              const isSelected = selectedColor === opt.value;
-              return (
-                <button
-                  key={opt.value}
-                  type="button"
-                  onClick={() => setValue("color", opt.value)}
-                  className={cn(
-                    "flex-1 rounded-lg border p-1 hover:bg-gray-100",
-                    isSelected ? "border-brand-base" : "border-gray-200",
-                  )}
-                  aria-label={`Cor ${opt.value}`}
-                >
-                  <div
-                    className={cn("h-5 w-full rounded-[4px]", opt.swatchClass)}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Ícone
+            </label>
+            <div className="grid grid-cols-8 gap-2">
+              {CATEGORY_ICON_OPTIONS.map((iconKey) => {
+                const IconComponent = getCategoryIconComponent(iconKey);
+                const isSelected = selectedIcon === iconKey;
+                if (!IconComponent) return null;
+                return (
+                  <IconButton
+                    key={iconKey}
+                    icon={IconComponent}
+                    onClick={() => setValue("icon", iconKey)}
+                    aria-label={`Ícone ${iconKey}`}
+                    className={cn(
+                      "w-10 h-10 flex items-center justify-center hover:bg-gray-100",
+                      isSelected
+                        ? "border-brand-base text-gray-600"
+                        : "text-gray-500",
+                    )}
                   />
-                </button>
-              );
-            })}
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Cor
+            </label>
+            <div className="flex w-full gap-2">
+              {CATEGORY_COLOR_OPTIONS.map((opt) => {
+                const isSelected = selectedColor === opt.value;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => setValue("color", opt.value)}
+                    className={cn(
+                      "flex-1 rounded-lg border p-1 hover:bg-gray-100",
+                      isSelected ? "border-brand-base" : "border-gray-200",
+                    )}
+                    aria-label={`Cor ${opt.value}`}
+                  >
+                    <div
+                      className={cn(
+                        "h-5 w-full rounded-[4px]",
+                        opt.swatchClass,
+                      )}
+                    />
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
