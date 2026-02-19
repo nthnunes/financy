@@ -48,7 +48,7 @@ export default function Categories() {
             Organize suas transações por categorias
           </p>
         </div>
-        <Button icon={Plus} variant="primary" size="md" onClick={openCreate}>
+        <Button icon={Plus} variant="primary" size="sm" onClick={openCreate}>
           Nova categoria
         </Button>
       </div>
