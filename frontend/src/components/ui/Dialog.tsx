@@ -38,7 +38,7 @@ export function Dialog({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
       role="dialog"
       aria-modal="true"
       aria-labelledby="dialog-title"
@@ -46,19 +46,17 @@ export function Dialog({
     >
       <div
         className={cn(
-          "bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-auto",
+          "bg-white rounded-xl w-full max-w-md overflow-auto",
           className,
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-start justify-between p-6 border-b border-gray-100">
-          <div>
-            <h2 id="dialog-title" className="text-xl font-bold text-gray-900">
+        <div className="flex items-start justify-between px-6 pt-6 border-b border-gray-100">
+          <div className="flex flex-col gap-0.5">
+            <h2 id="dialog-title" className="font-semibold text-gray-800">
               {title}
             </h2>
-            {subtitle && (
-              <p className="text-sm text-gray-500 mt-0.5">{subtitle}</p>
-            )}
+            {subtitle && <p className="text-sm text-gray-600">{subtitle}</p>}
           </div>
           <IconButton icon={X} onClick={onClose} aria-label="Fechar" />
         </div>
