@@ -16,12 +16,9 @@ export default function Profile() {
       .toUpperCase() ?? "?";
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-1">Perfil</h1>
-      <p className="text-gray-500 mb-6">Gerencie suas informações</p>
-
-      <Card className="max-w-md">
-        <CardContent className="p-6">
+    <div className="flex items-center justify-center">
+      <Card className="max-w-md w-full">
+        <CardContent className="p-8">
           <div className="flex flex-col items-center mb-6">
             <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center text-2xl font-semibold text-gray-600 mb-4">
               {initials}
