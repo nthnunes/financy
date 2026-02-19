@@ -125,17 +125,13 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                 {selectedOption.icon}
               </span>
             )}
-            <span className="flex-1 truncate">
+            <span className="min-w-0 flex-1 truncate">
               {selectedOption
                 ? selectedOption.label
                 : (placeholder ?? "Selecione")}
             </span>
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
-              {isOpen ? (
-                <ChevronUp size={20} strokeWidth={2} />
-              ) : (
-                <ChevronDown size={20} strokeWidth={2} />
-              )}
+            <span className="shrink-0 text-gray-500">
+              {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </span>
           </button>
 
