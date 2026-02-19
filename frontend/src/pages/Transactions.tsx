@@ -6,10 +6,13 @@ import {
   Trash,
   CircleArrowDown,
   CircleArrowUp,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
+import { PaginationButton } from "@/components/ui/PaginationButton";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { TransactionFormDialog } from "@/components/TransactionFormDialog";
@@ -303,34 +306,31 @@ export default function Transactions() {
                 {filtered.length === 1 ? "resultado" : "resultados"}
               </p>
               <div className="flex gap-1">
-                <Button
-                  variant="outline"
-                  size="sm"
+                <PaginationButton
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page <= 1}
+                  aria-label="Página anterior"
                 >
-                  &lt;
-                </Button>
+                  <ChevronLeft size={16} />
+                </PaginationButton>
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                   (n) => (
-                    <Button
+                    <PaginationButton
                       key={n}
-                      variant={n === page ? "primary" : "outline"}
-                      size="sm"
+                      isActive={n === page}
                       onClick={() => setPage(n)}
                     >
                       {n}
-                    </Button>
+                    </PaginationButton>
                   ),
                 )}
-                <Button
-                  variant="outline"
-                  size="sm"
+                <PaginationButton
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page >= totalPages}
+                  aria-label="Próxima página"
                 >
-                  &gt;
-                </Button>
+                  <ChevronRight size={16} />
+                </PaginationButton>
               </div>
             </div>
           )}
