@@ -177,38 +177,25 @@ export function TransactionFormDialog({
           {...register("title")}
         />
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Data
-          </label>
-          <input
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            label="Data"
+            placeholder="Selecione"
             type="date"
-            className="w-full rounded-lg border border-gray-300 bg-white py-2.5 px-4 text-gray-900 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            error={errors.date?.message}
             {...register("date")}
           />
-          {errors.date?.message && (
-            <p className="mt-1 text-sm text-red-500">{errors.date.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Valor
-          </label>
-          <input
-            key={edit?.id ?? "new"}
-            type="text"
+          <Input
+            label="Valor"
             placeholder="R$ 0,00"
-            className="w-full rounded-lg border border-gray-300 bg-white py-2.5 px-4 text-gray-900 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-            defaultValue={edit ? formatAmountForInput(edit.amount) : ""}
-            onChange={(e) => {
-              const v = parseAmountFromInput(e.target.value);
-              setValue("amount", v, { shouldValidate: true });
-            }}
+            error={errors.amount?.message}
+            value={formatAmountForInput(watch("amount"))}
+            onChange={(e) =>
+              setValue("amount", parseAmountFromInput(e.target.value), {
+                shouldValidate: true,
+              })
+            }
           />
-          {errors.amount?.message && (
-            <p className="mt-1 text-sm text-red-500">{errors.amount.message}</p>
-          )}
         </div>
 
         <Select
