@@ -55,7 +55,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </div>
       </header>
-      <main className="max-w-7xl mx-auto px-12 py-12">{children}</main>
+      <main className="max-w-7xl mx-auto p-12">{children}</main>
     </div>
   );
 }
