@@ -148,7 +148,9 @@ export function CategoryFormDialog({
                   aria-label={`Ícone ${iconKey}`}
                   className={cn(
                     "w-10 h-10 flex items-center justify-center hover:bg-gray-100",
-                    isSelected ? "border-brand-base" : "",
+                    isSelected
+                      ? "border-brand-base text-gray-600"
+                      : "text-gray-500",
                   )}
                 />
               );
