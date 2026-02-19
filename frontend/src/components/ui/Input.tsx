@@ -98,7 +98,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     );
 
     const displayHelper = error ?? helperText;
-    const helperClassName = cn("mt-1 text-sm text-gray-500");
+    const helperClassName = cn("mt-2 text-sm text-gray-500");
 
     return (
       <div className="w-full">

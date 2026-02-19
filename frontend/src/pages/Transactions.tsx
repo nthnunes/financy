@@ -149,10 +149,8 @@ export default function Transactions() {
         <CardContent className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Buscar
-              </label>
               <Input
+                label="Buscar"
                 placeholder="Buscar por descrição"
                 value={search}
                 onChange={(e) => {
@@ -163,10 +161,8 @@ export default function Transactions() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Tipo
-              </label>
               <Select
+                label="Tipo"
                 options={typeOptions}
                 value={typeFilter}
                 onChange={(e) => {
@@ -176,10 +172,8 @@ export default function Transactions() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Categoria
-              </label>
               <Select
+                label="Categoria"
                 options={categoryOptions}
                 value={categoryFilter}
                 onChange={(e) => {
@@ -189,10 +183,8 @@ export default function Transactions() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Período
-              </label>
               <Select
+                label="Período"
                 options={periodOptions}
                 value={periodFilter}
                 onChange={(e) => {
