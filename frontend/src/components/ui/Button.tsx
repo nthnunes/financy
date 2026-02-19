@@ -5,6 +5,7 @@ const ICON_SIZE = { sm: 16, md: 18 } as const;
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: LucideIcon;
+  iconClassName?: string;
   variant?: "primary" | "outline";
   size?: "sm" | "md";
   className?: string;
@@ -13,6 +14,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({
   icon: Icon,
+  iconClassName,
   variant = "primary",
   size = "md",
   className,
@@ -35,7 +37,7 @@ export function Button({
       )}
       {...props}
     >
-      {Icon && <Icon size={iconSize} />}
+      {Icon && <Icon size={iconSize} className={iconClassName} />}
       {children}
     </button>
   );
