@@ -7,6 +7,10 @@ import { CategoryFormDialog } from "@/components/CategoryFormDialog";
 import { useCategories, type Category } from "@/hooks/useCategories";
 import { useDeleteCategory } from "@/hooks/useCategories";
 import { useTransactions } from "@/hooks/useTransactions";
+import {
+  getCategoryIcon,
+  getCategoryIconColorClass,
+} from "@/lib/categoryOptions";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { CategoryTag } from "@/components/CategoryTag";
 
@@ -18,6 +22,30 @@ function getCategoryStats(
   return count;
 }
 
+function getMostUsedCategory(
+  transactions: { categoryId: string | null }[],
+  categories: Category[],
+): Category | null {
+  const withCategory = transactions.filter((t) => t.categoryId != null);
+  if (withCategory.length === 0) return null;
+  const counts = new Map<string, number>();
+  for (const t of withCategory) {
+    if (t.categoryId) {
+      counts.set(t.categoryId, (counts.get(t.categoryId) ?? 0) + 1);
+    }
+  }
+  let maxId: string | null = null;
+  let maxCount = 0;
+  counts.forEach((count, id) => {
+    if (count > maxCount) {
+      maxCount = count;
+      maxId = id;
+    }
+  });
+  if (!maxId) return null;
+  return categories.find((c) => c.id === maxId) ?? null;
+}
+
 export default function Categories() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Category | null>(null);
@@ -26,6 +54,7 @@ export default function Categories() {
   const deleteCategory = useDeleteCategory();
 
   const totalTransactions = transactions.length;
+  const mostUsedCategory = getMostUsedCategory(transactions, categories);
 
   const openCreate = () => {
     setEditing(null);
@@ -54,13 +83,13 @@ export default function Categories() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
+            <div className="flex items-center justify-center text-gray-600 shrink-0">
               <Tag size={24} />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-2xl font-bold text-gray-800">
                 {categories.length}
               </p>
@@ -72,10 +101,10 @@ export default function Categories() {
         </Card>
         <Card>
           <CardContent className="flex items-center gap-4 p-6">
-            <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600">
+            <div className="flex items-center justify-center text-gray-600 shrink-0">
               <TrendingUp size={24} />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-2xl font-bold text-gray-800">
                 {totalTransactions}
               </p>
@@ -83,6 +112,41 @@ export default function Categories() {
                 Total de transações
               </p>
             </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex items-center gap-4 p-6">
+            {mostUsedCategory ? (
+              <>
+                <div className="flex items-center justify-center shrink-0">
+                  {getCategoryIcon(
+                    mostUsedCategory.icon,
+                    24,
+                    getCategoryIconColorClass(mostUsedCategory.color ?? null),
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-2xl font-bold text-gray-800 truncate">
+                    {mostUsedCategory.name}
+                  </p>
+                  <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
+                    Categoria mais utilizada
+                  </p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center justify-center text-gray-400 shrink-0">
+                  —
+                </div>
+                <div className="min-w-0">
+                  <p className="text-2xl font-bold text-gray-800">—</p>
+                  <p className="text-xs font-medium uppercase text-gray-500 tracking-wider">
+                    Categoria mais utilizada
+                  </p>
+                </div>
+              </>
+            )}
           </CardContent>
         </Card>
       </div>
