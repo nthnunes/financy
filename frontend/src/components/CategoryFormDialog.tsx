@@ -122,18 +122,13 @@ export function CategoryFormDialog({
           {...register("name")}
         />
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Descrição
-          </label>
-          <p className="text-xs text-gray-500 mb-1">Opcional</p>
-          <input
-            type="text"
-            placeholder="Descrição da categoria"
-            className="w-full rounded-lg border border-gray-300 bg-white py-2.5 px-3 text-gray-800 placeholder-gray-400 focus:border-brand-base focus:outline-none focus:ring-1 focus:ring-brand-base"
-            {...register("description")}
-          />
-        </div>
+        <Input
+          label="Descrição"
+          placeholder="Descrição da categoria"
+          helperText="Opcional"
+          error={errors.description?.message}
+          {...register("description")}
+        />
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
