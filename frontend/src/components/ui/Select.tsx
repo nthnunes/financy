@@ -146,7 +146,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
               <div
                 ref={dropdownRef}
                 role="listbox"
-                className="fixed z-[100] flex flex-col gap-4 rounded-lg border border-gray-300 bg-white px-3 py-3.5"
+                className="fixed z-[100] flex flex-col gap-4 rounded-lg border border-gray-300 bg-white px-3 py-3.5 shadow-[0_4px_15px_0_rgba(0,0,0,0.1)]"
                 style={{
                   top: dropdownRect.top,
                   left: dropdownRect.left,
