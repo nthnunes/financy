@@ -170,8 +170,8 @@ export default function Categories() {
           {categories.map((c) => {
             const count = getCategoryStats(transactions, c.id);
             return (
-              <Card key={c.id}>
-                <CardContent className="p-6">
+              <Card key={c.id} className="h-full">
+                <CardContent className="p-6 flex flex-col h-full gap-5">
                   <div className="flex items-start justify-between mb-3">
                     <CategoryIcon icon={c.icon} color={c.color} />
                     <div className="flex gap-2">
@@ -193,13 +193,15 @@ export default function Categories() {
                       />
                     </div>
                   </div>
-                  <h3 className="font-bold text-gray-800 text-lg">{c.name}</h3>
-                  {c.description && (
-                    <p className="mt-1 text-sm text-gray-500">
-                      {c.description}
-                    </p>
-                  )}
-                  <div className="flex items-center justify-between mt-4 gap-2">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="font-bold text-gray-800 text-lg">
+                      {c.name}
+                    </h3>
+                    {c.description && (
+                      <p className="text-sm text-gray-500">{c.description}</p>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between gap-2 mt-auto">
                     <CategoryTag color={c.color ?? null}>{c.name}</CategoryTag>
                     <span className="text-sm text-gray-500 shrink-0">
                       {count} {count === 1 ? "item" : "itens"}
