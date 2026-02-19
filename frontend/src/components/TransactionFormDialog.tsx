@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
@@ -69,6 +69,7 @@ export function TransactionFormDialog({
 
   const {
     register,
+    control,
     handleSubmit,
     watch,
     setValue,
@@ -189,6 +190,13 @@ export function TransactionFormDialog({
         </div>
 
         <input type="hidden" {...register("type")} />
+        <Controller
+          name="amount"
+          control={control}
+          render={({ field }) => (
+            <input type="hidden" {...field} value={field.value} />
+          )}
+        />
 
         <div className="flex flex-col gap-4">
           <Input
