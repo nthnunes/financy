@@ -75,6 +75,7 @@ export default function Dashboard() {
         count: map[c.id]?.count ?? 0,
         total: map[c.id]?.total ?? 0,
       }))
+      .filter((c) => c.total > 0)
       .sort((a, b) => b.total - a.total)
       .slice(0, 5);
   }, [categories, transactions]);
@@ -242,6 +243,10 @@ export default function Dashboard() {
               {categories.length === 0 ? (
                 <div className="text-center text-gray-500">
                   Nenhuma categoria ainda.
+                </div>
+              ) : categoryTotals.length === 0 ? (
+                <div className="text-center text-gray-500">
+                  Nenhuma categoria com despesas no mês.
                 </div>
               ) : (
                 categoryTotals.map((c) => (
